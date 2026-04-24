@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Alpha Feedback Dashboard — Sample / Template</title>
-<meta name="description" content="Sample alpha feedback dashboard — a redacted template showing how we structure tester feedback into a shareable review view." />
+<title>Power User Strategy — Instrumentation Sample</title>
+<meta name="description" content="Strategy to instrumentation — how a PLG framework becomes a measurement plan. Sample work product." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,7 +28,7 @@
     --vert: #113a3a;
   }
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   html, body {
     margin: 0; padding: 0;
     background: var(--neutral);
@@ -38,30 +38,18 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  img { max-width: 100%; display: block; }
-  a { color: var(--marinade); }
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
-  .wrap {
-    max-width: 72rem;
-    margin: 0 auto;
-    padding: 2rem 1.25rem 4rem;
-  }
-
-  /* Sample banner */
+  /* ===== Banner + Header ===== */
   .sample-banner {
     background: var(--happy);
     border: 1px solid var(--ink);
     border-radius: 10px;
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+    font-size: 0.88rem;
     color: var(--ink);
     margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    justify-content: center;
     text-align: center;
-    flex-wrap: wrap;
   }
   .sample-banner strong { font-weight: 700; }
 
@@ -84,34 +72,19 @@
     display: grid; place-items: center;
   }
   .brand-logo svg { width: 28px; height: 28px; }
-  .brand-title {
-    font-family: "K2D", sans-serif;
-    font-weight: 800;
-    font-size: 1.35rem;
-    letter-spacing: 0.01em;
-    line-height: 1.1;
-    color: var(--ink);
-  }
-  .brand-sub {
-    font-size: 0.85rem;
-    color: var(--ink-mute);
-    margin-top: 0.15rem;
-  }
+  .brand-title { font-weight: 800; font-size: 1.35rem; line-height: 1.1; color: var(--ink); }
+  .brand-sub { font-size: 0.85rem; color: var(--ink-mute); margin-top: 0.15rem; }
   .pill {
     display: inline-flex; align-items: center; gap: 0.5rem;
     font-size: 0.85rem; font-weight: 500;
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--paper); color: var(--ink);
     border: 1px solid var(--line-strong);
     border-radius: 999px;
     padding: 0.4rem 0.9rem;
   }
-  .pill .dot {
-    width: 0.5rem; height: 0.5rem;
-    background: var(--aqua);
-    border-radius: 999px;
-  }
+  .pill .dot { width: 0.5rem; height: 0.5rem; background: var(--aqua); border-radius: 999px; }
 
+  /* ===== Hero ===== */
   .hero {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -122,21 +95,17 @@
   .hero h1 {
     margin: 0;
     font-weight: 800;
-    font-size: clamp(1.75rem, 3vw, 2.4rem);
-    line-height: 1.15;
+    font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+    line-height: 1.12;
     color: var(--ink);
     letter-spacing: -0.01em;
   }
-  .hero h1 .mark {
-    background: var(--happy);
-    padding: 0 0.2em;
-    border-radius: 4px;
-  }
+  .hero h1 .mark { background: var(--happy); padding: 0 0.2em; border-radius: 4px; }
   .hero p.lede {
-    margin: 0.75rem 0 0;
+    margin: 0.85rem 0 0;
     font-size: 1.05rem;
     color: var(--ink-soft);
-    max-width: 56ch;
+    max-width: 60ch;
   }
   .kpi-row {
     display: flex; flex-wrap: wrap; gap: 0.6rem;
@@ -147,436 +116,310 @@
     border: 1px solid var(--line-strong);
     border-radius: 12px;
     padding: 0.75rem 1rem;
-    min-width: 96px;
-    text-align: left;
+    min-width: 104px;
   }
-  .kpi .num {
-    font-weight: 800;
-    font-size: 1.5rem;
-    line-height: 1.1;
-    color: var(--ink);
-  }
-  .kpi .lbl {
-    font-size: 0.78rem;
-    color: var(--ink-mute);
-    margin-top: 0.2rem;
-  }
+  .kpi .num { font-weight: 800; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
+  .kpi .lbl { font-size: 0.78rem; color: var(--ink-mute); margin-top: 0.2rem; }
 
-  nav.tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
+  /* ===== Anchor nav ===== */
+  nav.anchors {
+    display: flex; flex-wrap: wrap; gap: 0.25rem;
     margin: 0 0 2rem;
-    padding: 0;
+    padding: 0 0 0.25rem;
     border-bottom: 1px solid var(--line-strong);
+    position: sticky; top: 0;
+    background: var(--neutral);
+    z-index: 10;
   }
-  nav.tabs button {
-    background: transparent;
-    border: none;
-    border-bottom: 3px solid transparent;
+  nav.anchors a {
     color: var(--ink-soft);
-    font-family: inherit;
+    text-decoration: none;
     font-weight: 600;
-    font-size: 0.98rem;
-    padding: 0.85rem 1.1rem;
-    cursor: pointer;
-    border-radius: 6px 6px 0 0;
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 3px solid transparent;
     transition: color 120ms, border-color 120ms, background 120ms;
-    display: inline-flex; align-items: center; gap: 0.5rem;
+    border-radius: 6px 6px 0 0;
     margin-bottom: -1px;
   }
-  nav.tabs button:hover {
-    color: var(--ink);
-    background: rgba(0,0,0,0.03);
-  }
-  nav.tabs button.active {
-    color: var(--ink);
-    border-bottom-color: var(--marinade);
-  }
-  nav.tabs .tab-count {
-    font-size: 0.75rem;
-    background: var(--line);
-    color: var(--ink-soft);
-    padding: 0.1rem 0.5rem;
-    border-radius: 999px;
-    font-weight: 700;
-  }
-  nav.tabs button.active .tab-count {
-    background: var(--marinade-soft);
-    color: var(--marinade);
-  }
+  nav.anchors a:hover { color: var(--ink); background: rgba(0,0,0,0.03); }
+  nav.anchors a.active { color: var(--ink); border-bottom-color: var(--marinade); }
 
-  .panel { display: none; }
-  .panel.active { display: block; }
-
-  section.card {
-    background: var(--paper);
-    border: 1px solid var(--line-strong);
-    border-radius: 14px;
-    padding: 1.5rem 1.5rem 1.25rem;
-    margin-bottom: 1.25rem;
-  }
-  section.card > h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  section.card > .card-intro {
-    margin: 0 0 1.25rem;
-    color: var(--ink-soft);
-    font-size: 0.98rem;
-  }
-
-  .user-grid {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  }
-  .tester {
-    border: 1px solid var(--line-strong);
-    border-radius: 14px;
-    background: var(--paper);
-    overflow: hidden;
-  }
-  .tester-head {
-    padding: 1rem 1.1rem;
-    background: var(--neutral);
-    border-bottom: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 0.5rem;
-  }
-  .tester-head .name {
-    font-weight: 700;
-    font-size: 1.08rem;
-    color: var(--ink);
-  }
-  .tester-head .when {
-    font-size: 0.8rem;
-    color: var(--ink-mute);
-    margin-top: 0.15rem;
-  }
-  .sent-badge {
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.3rem 0.65rem;
-    border-radius: 999px;
-    white-space: nowrap;
-  }
-  .sent-enthusiastic { background: var(--happy-soft); color: #8a6300; }
-  .sent-positive     { background: var(--aqua-soft); color: var(--vert); }
-  .sent-mixed        { background: var(--marinade-soft); color: var(--marinade); }
-  .sent-skeptical    { background: var(--heart-soft); color: #9c2a0f; }
-
-  .tester-body { padding: 1rem 1.25rem 1.25rem; }
-
-  .gist {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    font-style: italic;
-    border-left: 3px solid var(--aqua);
-    padding-left: 0.85rem;
-    margin-bottom: 1.25rem;
-  }
-  .q-block { margin-top: 1.25rem; }
-  .q-block h4 {
-    margin: 0 0 0.4rem;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  .q-block .answer {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-  }
-  .verdict {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.15rem 0.55rem;
-    border-radius: 999px;
-    margin-right: 0.4rem;
-    vertical-align: 2px;
-  }
-  .verdict-yes { background: var(--aqua-soft); color: var(--vert); }
-  .verdict-no { background: var(--heart-soft); color: #9c2a0f; }
-  .verdict-mixed { background: var(--happy-soft); color: #8a6300; }
-
-  .answer ul {
-    margin: 0.5rem 0 0 1.1rem;
-    padding: 0;
-    color: var(--ink-soft);
-  }
-  .answer li { margin: 0.25rem 0; }
-  blockquote.q {
-    margin: 0.6rem 0 0;
-    padding: 0.75rem 1rem;
-    border-left: 3px solid var(--marinade);
-    background: #fbf6e8;
-    color: var(--ink);
-    font-size: 0.93rem;
-    border-radius: 0 6px 6px 0;
-  }
-
-  .bug {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 1rem;
-    padding: 1.1rem 1.2rem;
-    background: var(--paper);
-    border: 1px solid var(--line-strong);
-    border-radius: 12px;
-    margin-bottom: 0.75rem;
-    align-items: start;
-  }
-  .bug-main .top {
-    display: flex; align-items: center; gap: 0.6rem;
-    margin-bottom: 0.3rem;
-    flex-wrap: wrap;
-  }
-  .bug-main h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  .sev {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.12rem 0.55rem;
-    border-radius: 999px;
-    letter-spacing: 0.02em;
-  }
-  .sev-minor  { background: var(--happy-soft); color: #8a6300; }
-  .sev-medium { background: var(--marinade-soft); color: var(--marinade); }
-  .sev-blocker { background: var(--heart-soft); color: #9c2a0f; }
-  .bug-main p {
-    margin: 0.3rem 0 0;
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-  }
-  .repro {
-    margin-top: 0.65rem;
-    font-size: 0.9rem;
-    background: var(--neutral);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 0.6rem 0.8rem;
-    color: var(--ink);
-  }
-  .repro strong { color: var(--vert); }
-  .area {
-    font-size: 0.72rem;
-    font-weight: 600;
-    background: var(--aqua-soft);
-    color: var(--vert);
-    padding: 0.3rem 0.65rem;
-    border-radius: 999px;
-    white-space: nowrap;
-    height: fit-content;
-  }
-  .reporter {
-    font-size: 0.78rem;
-    color: var(--ink-mute);
-    margin-right: 0.3rem;
-  }
-
-  .feature {
-    border: 1px solid var(--line-strong);
-    border-radius: 12px;
-    background: var(--paper);
-    margin-bottom: 0.6rem;
-    overflow: hidden;
-  }
-  .feature-head {
-    padding: 1rem 1.2rem;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 0.75rem;
-    cursor: pointer;
-    user-select: none;
-    background: var(--paper);
-    transition: background 120ms;
-  }
-  .feature-head:hover { background: var(--neutral); }
-  .feature.open .feature-head { background: var(--neutral); border-bottom: 1px solid var(--line); }
-  .feature-head h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-  .feature-counts {
-    display: flex; gap: 0.35rem; align-items: center;
-  }
-  .ftag {
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.15rem 0.55rem;
-    border-radius: 999px;
-  }
-  .ftag-pos { background: var(--aqua-soft); color: var(--vert); }
-  .ftag-neg { background: var(--heart-soft); color: #9c2a0f; }
-  .ftag-sug { background: var(--happy-soft); color: #8a6300; }
-  .toggle {
-    font-size: 1rem;
-    color: var(--ink-mute);
-    margin-left: 0.25rem;
-    transition: transform 150ms;
-    width: 1.25em;
-    text-align: center;
-  }
-  .feature.open .toggle { transform: rotate(45deg); }
-
-  .feature-body {
-    display: none;
-    padding: 1.1rem 1.2rem;
-  }
-  .feature.open .feature-body {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
-  @media (max-width: 820px) {
-    .feature.open .feature-body { grid-template-columns: 1fr; }
-  }
-  .f-col h4 {
-    margin: 0 0 0.5rem;
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: var(--ink-soft);
-    letter-spacing: 0.02em;
-  }
-  .f-col.pos h4 { color: var(--vert); }
-  .f-col.neg h4 { color: #9c2a0f; }
-  .f-col.sug h4 { color: var(--marinade); }
-  .f-col ul { margin: 0; padding: 0; list-style: none; }
-  .f-col li {
-    font-size: 0.92rem;
-    padding: 0.45rem 0;
-    border-top: 1px solid var(--line);
-    color: var(--ink-soft);
-  }
-  .f-col li:first-child { border-top: none; padding-top: 0; }
-  .f-col li .who {
-    display: inline-block;
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 0.72rem;
-    background: var(--neutral);
-    padding: 0.1rem 0.5rem;
-    border-radius: 4px;
-    margin-right: 0.4rem;
-  }
-  .empty {
-    font-size: 0.88rem;
-    color: var(--ink-mute);
-    font-style: italic;
-  }
-
-  .sent-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 0.85rem;
-    margin-bottom: 0.75rem;
-  }
-  .sent-card {
-    background: var(--neutral);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 0.9rem 1rem;
-  }
-  .sent-card .nm {
-    font-weight: 700;
-    color: var(--ink);
-    font-size: 1rem;
-  }
-  .sent-card .g {
-    font-size: 0.88rem;
-    color: var(--ink-soft);
-    margin: 0.3rem 0 0.5rem;
-  }
-
-  .theme {
-    padding: 1rem 1.1rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 1px solid var(--line);
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    align-items: start;
-  }
-  .theme:last-child { border-bottom: none; margin-bottom: 0; }
-  .theme-num {
+  /* ===== Sections ===== */
+  section.block { margin-bottom: 2.5rem; scroll-margin-top: 5rem; }
+  .block h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.35rem;
     font-weight: 800;
-    font-size: 1rem;
-    color: var(--marinade);
-    background: var(--marinade-soft);
-    width: 2.2rem; height: 2.2rem;
-    border-radius: 8px;
-    display: grid; place-items: center;
-  }
-  .theme h3 {
-    margin: 0 0 0.25rem;
-    font-size: 1.02rem;
-    font-weight: 700;
     color: var(--ink);
   }
-  .theme p {
-    margin: 0;
-    color: var(--ink-soft);
-    font-size: 0.95rem;
-  }
-
-  .insight-big {
-    border: 1px solid var(--line-strong);
-    background: var(--paper);
-    border-left: 5px solid var(--marinade);
-    border-radius: 10px;
-    padding: 1.1rem 1.25rem;
-    margin-bottom: 0.85rem;
-  }
-  .insight-big .eyebrow {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--marinade);
-    letter-spacing: 0.05em;
+  .block .kicker {
     text-transform: uppercase;
-  }
-  .insight-big h3 {
-    margin: 0.25rem 0 0.6rem;
-    font-size: 1.15rem;
+    letter-spacing: 0.06em;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--ink);
-    line-height: 1.3;
+    color: var(--marinade);
+    margin-bottom: 0.3rem;
   }
-  .insight-big p {
-    margin: 0;
+  .block .intro {
     color: var(--ink-soft);
-    font-size: 0.96rem;
+    margin: 0 0 1.25rem;
+    max-width: 68ch;
   }
 
-  .quote-grid {
-    display: grid; gap: 1rem;
+  /* ===== Archetype cards ===== */
+  .arch-grid {
+    display: grid;
+    gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
-  .quote {
-    background: #fbf6e8;
+  .arch {
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    padding: 1.25rem 1.35rem;
+    display: flex; flex-direction: column; gap: 0.85rem;
+  }
+  .arch.volume { border-top: 5px solid var(--aqua); }
+  .arch.synth  { border-top: 5px solid var(--marinade); }
+  .arch.habit  { border-top: 5px solid var(--happy); }
+  .arch-name {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .arch-badge {
+    font-size: 0.72rem; font-weight: 700;
+    padding: 0.2rem 0.55rem; border-radius: 999px;
+    background: var(--neutral); color: var(--ink-soft);
+  }
+  .arch-rules { display: flex; flex-wrap: wrap; gap: 0.35rem; align-items: center; }
+  .rule {
+    font-size: 0.85rem; font-weight: 600;
+    background: var(--neutral);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    padding: 0.3rem 0.6rem;
+    border-radius: 7px;
+  }
+  .rule-and {
+    font-size: 0.7rem; font-weight: 800; color: var(--ink-mute);
+    padding: 0 0.1rem;
+  }
+  .arch-why {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    border-left: 3px solid var(--line-strong);
+    padding-left: 0.85rem;
+  }
+  .arch-stat {
+    margin-top: auto;
+    display: flex; align-items: baseline; gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--line);
+  }
+  .arch-stat .big { font-weight: 800; font-size: 1.4rem; color: var(--ink); }
+  .arch-stat .cap { font-size: 0.78rem; color: var(--ink-mute); }
+
+  /* ===== Lifecycle stages ===== */
+  .stage {
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    padding: 1.25rem 1.35rem;
+    margin-bottom: 1rem;
+  }
+  .stage-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+  .stage-head h3 { margin: 0; font-size: 1.15rem; font-weight: 800; color: var(--ink); }
+  .stage-head .ct {
+    font-size: 0.78rem; font-weight: 600;
+    background: var(--neutral); color: var(--ink-soft);
+    padding: 0.2rem 0.6rem; border-radius: 999px;
+  }
+  .stage-tagline { color: var(--ink-soft); margin: 0 0 1rem; font-size: 0.95rem; max-width: 66ch; }
+  table.events {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+  }
+  table.events th {
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  table.events td {
+    padding: 0.65rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.events tr:last-child td { border-bottom: none; }
+  table.events td:first-child { font-weight: 600; color: var(--ink); width: 36%; }
+  table.events td:last-child { color: var(--ink-soft); }
+  table.events .maybe {
+    display: inline-block;
+    font-size: 0.68rem; font-weight: 700;
+    padding: 0.1rem 0.45rem; border-radius: 4px;
+    background: var(--happy-soft); color: #8a6300;
+    margin-right: 0.4rem; vertical-align: 1px;
+  }
+
+  /* ===== Dashboard preview ===== */
+  .dash-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .tile {
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    padding: 1.15rem 1.25rem;
+  }
+  .tile.col-4 { grid-column: span 4; }
+  .tile.col-6 { grid-column: span 6; }
+  .tile.col-8 { grid-column: span 8; }
+  .tile.col-12 { grid-column: span 12; }
+  @media (max-width: 900px) {
+    .tile.col-4, .tile.col-6, .tile.col-8 { grid-column: span 12; }
+  }
+  .tile h3 {
+    margin: 0 0 0.2rem;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .tile .sub {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    margin-bottom: 0.9rem;
+  }
+
+  .big-stat { font-weight: 800; font-size: 2rem; color: var(--ink); line-height: 1; }
+  .big-stat .trend {
+    font-size: 0.8rem; font-weight: 600;
+    margin-left: 0.5rem;
+    color: var(--vert);
+  }
+  .big-stat .trend.down { color: #9c2a0f; }
+  .big-cap { font-size: 0.8rem; color: var(--ink-mute); margin-top: 0.25rem; }
+
+  /* funnel */
+  .funnel { display: flex; flex-direction: column; gap: 0.4rem; }
+  .funnel-row {
+    display: grid;
+    grid-template-columns: 12rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  .funnel-label { color: var(--ink); font-weight: 600; }
+  .funnel-bar {
+    height: 0.85rem;
+    background: var(--aqua);
+    border-radius: 999px;
+    min-width: 3%;
+  }
+  .funnel-bar.f2 { background: #29bdb8; }
+  .funnel-bar.f3 { background: #54cac4; }
+  .funnel-bar.f4 { background: #84d4ce; }
+  .funnel-bar.f5 { background: #b0e1dc; }
+  .funnel-val { font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .funnel-val .pct { color: var(--ink-mute); font-weight: 500; margin-left: 0.35rem; font-size: 0.85rem; }
+  @media (max-width: 640px) {
+    .funnel-row { grid-template-columns: 1fr; gap: 0.25rem; }
+  }
+
+  /* bar rows */
+  .barlist { display: flex; flex-direction: column; gap: 0.5rem; }
+  .barrow {
+    display: grid;
+    grid-template-columns: 7rem 1fr auto;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  .bar {
+    height: 0.55rem;
+    background: var(--marinade);
+    border-radius: 999px;
+  }
+  .bar.c2 { background: var(--aqua); }
+  .bar.c3 { background: var(--happy); }
+  .bar-label { color: var(--ink); font-weight: 600; }
+  .bar-val { font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .bar-val .pct { color: var(--ink-mute); font-weight: 500; margin-left: 0.35rem; font-size: 0.82rem; }
+
+  /* stat grid */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+  }
+  .stat-mini {
+    padding: 0.75rem 0.9rem;
+    background: var(--neutral);
+    border-radius: 10px;
+  }
+  .stat-mini .n { font-weight: 800; font-size: 1.35rem; color: var(--ink); line-height: 1.1; }
+  .stat-mini .l { font-size: 0.78rem; color: var(--ink-mute); margin-top: 0.2rem; }
+
+  /* retention line */
+  .ret-row {
+    display: grid;
+    grid-template-columns: 5rem 1fr 3.2rem;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.88rem;
+  }
+  .ret-track {
+    position: relative;
+    height: 0.5rem;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .ret-fill {
+    height: 100%;
+    background: var(--vert);
+    border-radius: 999px;
+  }
+
+  /* ===== Open questions ===== */
+  .q-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .q-item {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.85rem 1rem;
+    background: var(--paper);
     border: 1px solid var(--line-strong);
     border-radius: 12px;
-    padding: 1.1rem 1.25rem;
   }
-  .quote blockquote {
-    margin: 0 0 0.5rem;
-    font-size: 0.98rem;
-    color: var(--ink);
-    line-height: 1.5;
-  }
-  .quote cite {
-    display: block;
-    font-style: normal;
-    font-size: 0.82rem;
-    font-weight: 600;
+  .q-num {
+    font-weight: 800;
     color: var(--marinade);
+    font-size: 0.95rem;
+  }
+  .q-text { color: var(--ink); font-size: 0.95rem; }
+  .q-owner {
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--aqua-soft);
+    color: var(--vert);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    white-space: nowrap;
   }
 
   footer.site {
@@ -585,17 +428,12 @@
     border-top: 1px solid var(--line-strong);
     font-size: 0.82rem;
     color: var(--ink-mute);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 1rem;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
   }
 
   @media (max-width: 720px) {
     .hero { grid-template-columns: 1fr; }
     .kpi-row { justify-content: flex-start; }
-    .bug { grid-template-columns: 1fr; }
-    .area { justify-self: start; }
   }
 </style>
 </head>
@@ -603,7 +441,7 @@
 <div class="wrap">
 
   <div class="sample-banner">
-    <strong>Sample / Template view</strong> · All names, feedback and quotes are placeholder lorem-ipsum content. Real dashboard is delivered populated with your testers' actual responses.
+    <strong>Case study · Sample work product.</strong> Dashboard numbers in the preview section are illustrative. Strategy and instrumentation plan are the real deliverable.
   </div>
 
   <header class="site">
@@ -618,700 +456,359 @@
         </svg>
       </div>
       <div>
-        <div class="brand-title">[Your Brand]</div>
-        <div class="brand-sub">Alpha Feedback Dashboard — Template Demo</div>
+        <div class="brand-title">Digital Culturist</div>
+        <div class="brand-sub">Power User Strategy · Instrumentation Plan</div>
       </div>
     </div>
-    <div class="pill"><span class="dot"></span> 4 testers · Alpha round · [Date]</div>
+    <div class="pill"><span class="dot"></span> Product-led growth · pre-monetization</div>
   </header>
 
   <section class="hero">
     <div>
-      <h1>Alpha feedback, <span class="mark">sorted &amp; ready</span> for review.</h1>
-      <p class="lede">A shared workspace where your team can dig into what testers told you — by user, by bug, by feature, and the standout signals worth acting on. Populated with your data, it looks like this.</p>
+      <h1>From strategy to <span class="mark">instrumentation,</span> in one view.</h1>
+      <p class="lede">How a product-led growth framework becomes a measurement plan — three power-user archetypes, the lifecycle events that surface them, and the dashboard tiles they power. Built for alignment across product, engineering, and marketing.</p>
     </div>
     <div class="kpi-row">
-      <div class="kpi"><div class="num">4</div><div class="lbl">Testers</div></div>
-      <div class="kpi"><div class="num">20</div><div class="lbl">Q&amp;A responses</div></div>
-      <div class="kpi"><div class="num">8</div><div class="lbl">Bugs</div></div>
-      <div class="kpi"><div class="num">13</div><div class="lbl">Features</div></div>
+      <div class="kpi"><div class="num">3</div><div class="lbl">Power-user archetypes</div></div>
+      <div class="kpi"><div class="num">4</div><div class="lbl">Lifecycle stages</div></div>
+      <div class="kpi"><div class="num">22</div><div class="lbl">Tracked events</div></div>
+      <div class="kpi"><div class="num">5</div><div class="lbl">Open questions</div></div>
     </div>
   </section>
 
-  <nav class="tabs" role="tablist">
-    <button class="tab-btn active" data-tab="users">By user <span class="tab-count">4</span></button>
-    <button class="tab-btn" data-tab="bugs">Bugs <span class="tab-count">8</span></button>
-    <button class="tab-btn" data-tab="features">By feature <span class="tab-count">13</span></button>
-    <button class="tab-btn" data-tab="insights">Synthesis &amp; insights</button>
+  <nav class="anchors" id="anchors">
+    <a href="#archetypes" class="active">Archetypes</a>
+    <a href="#lifecycle">Lifecycle &amp; events</a>
+    <a href="#preview">Dashboard preview</a>
+    <a href="#questions">Open questions</a>
   </nav>
 
-  <!-- ===== USERS ===== -->
-  <div class="panel active" id="panel-users">
-    <section class="card">
-      <h2>Feedback by tester</h2>
-      <p class="card-intro">Each tester's responses across the five alpha questions, with a one-line snapshot and sentiment at the top.</p>
-      <div class="user-grid" id="user-grid"></div>
-    </section>
-  </div>
+  <!-- =============== ARCHETYPES =============== -->
+  <section class="block" id="archetypes">
+    <div class="kicker">01 · Conceptual framework</div>
+    <h2>Three power-user archetypes.</h2>
+    <p class="intro">Any user can hold one or more tags. Each archetype comes from a different product-led growth hypothesis — storage depth, value delivery, and usage cadence — so the instrumentation plan covers all three.</p>
 
-  <!-- ===== BUGS ===== -->
-  <div class="panel" id="panel-bugs">
-    <section class="card">
-      <h2>Bugs &amp; issues</h2>
-      <p class="card-intro">Every bug reported during the alpha, tagged by severity, surface area, and reporter.</p>
-      <div id="bug-list"></div>
-    </section>
-  </div>
+    <div class="arch-grid">
+      <article class="arch volume">
+        <div class="arch-name">Volume <span class="arch-badge">Storage depth</span></div>
+        <div class="arch-rules">
+          <span class="rule">100+ total saves</span>
+          <span class="rule-and">AND</span>
+          <span class="rule">saves in last 7 days</span>
+          <span class="rule-and">AND</span>
+          <span class="rule">3+ folders</span>
+        </div>
+        <div class="arch-why">Holding a lot of context in the tool signals loyalty — these users have the most to lose if they walk away.</div>
+        <div class="arch-stat"><span class="big">18</span><span class="cap">users tagged this cycle (7.3% of active)</span></div>
+      </article>
 
-  <!-- ===== FEATURES ===== -->
-  <div class="panel" id="panel-features">
-    <section class="card">
-      <h2>Feedback by feature</h2>
-      <p class="card-intro">Click any feature to open a three-column split: what testers liked, their concerns, and their suggestions.</p>
-      <div id="feature-list"></div>
-    </section>
-  </div>
+      <article class="arch synth">
+        <div class="arch-name">Synthesis <span class="arch-badge">Value delivery</span></div>
+        <div class="arch-rules">
+          <span class="rule">5+ insights generated</span>
+          <span class="rule-and">AND</span>
+          <span class="rule">1+ insight edited</span>
+          <span class="rule-and">AND</span>
+          <span class="rule">2+ folders in use</span>
+        </div>
+        <div class="arch-why">These users are getting the core product promise — "protect the human part of strategy" — and interacting with the synthesis rather than consuming it passively.</div>
+        <div class="arch-stat"><span class="big">12</span><span class="cap">users tagged (4.9% of active)</span></div>
+      </article>
 
-  <!-- ===== INSIGHTS ===== -->
-  <div class="panel" id="panel-insights">
-    <section class="card">
-      <h2>Overall sentiment</h2>
-      <div class="sent-row" id="sentiment-row"></div>
-      <p style="margin:1rem 0 0; color: var(--ink-soft);">
-        A plain-English read of how each tester felt, pulled up to the top so the team has shared context before diving into details.
-      </p>
-    </section>
+      <article class="arch habit">
+        <div class="arch-name">Habit <span class="arch-badge">Usage cadence</span></div>
+        <div class="arch-rules">
+          <span class="rule">Logged in 5+ of last 7 days</span>
+          <span class="rule-and">AND</span>
+          <span class="rule">1+ save / week for 4 consecutive weeks</span>
+        </div>
+        <div class="arch-why">The strongest leading indicator of retention into a paid tier. Habit means DC is a daily-use tool — the behavioral pattern paid conversion depends on.</div>
+        <div class="arch-stat"><span class="big">9</span><span class="cap">users tagged (3.6% of active)</span></div>
+      </article>
+    </div>
+  </section>
 
-    <section class="card">
-      <h2>Key themes</h2>
-      <div id="theme-list"></div>
-    </section>
+  <!-- =============== LIFECYCLE =============== -->
+  <section class="block" id="lifecycle">
+    <div class="kicker">02 · Tactical instrumentation</div>
+    <h2>Lifecycle events &amp; fields.</h2>
+    <p class="intro">Four stages, each with the events we instrument and the fields captured on each event. The fields are what power the archetype rules above and the dashboard tiles below.</p>
 
-    <section class="card">
-      <h2>Standout insights</h2>
-      <div id="insight-list"></div>
-    </section>
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Activation</h3>
+        <span class="ct">6 events</span>
+      </div>
+      <p class="stage-tagline">Are new users making it from "signed up" to "got value"? Most common drop-off point in PLG products. Triggers lifecycle email flows.</p>
+      <table class="events">
+        <thead><tr><th>Event</th><th>Fields captured</th></tr></thead>
+        <tbody>
+          <tr><td>Account created</td><td>signup source, invite cohort (alpha / beta / waitlist)</td></tr>
+          <tr><td>Chrome extension installed</td><td>days since signup &nbsp;·&nbsp; <em>gap signals onboarding friction</em></td></tr>
+          <tr><td>First save completed</td><td>save type (article / TikTok / IG / other), days since signup</td></tr>
+          <tr><td>First folder created</td><td>days since first save &nbsp;·&nbsp; <em>intent signal — users projecting future use</em></td></tr>
+          <tr><td>First insight generated</td><td># of saves included, days since first save</td></tr>
+          <tr><td><span class="maybe">maybe</span>Tutorial video view</td><td>unique video views &nbsp;·&nbsp; <em>do watchers activate faster?</em></td></tr>
+        </tbody>
+      </table>
+    </div>
 
-    <section class="card">
-      <h2>Testimonials</h2>
-      <div class="quote-grid" id="quote-grid"></div>
-    </section>
-  </div>
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Habit &amp; retention</h3>
+        <span class="ct">5 events</span>
+      </div>
+      <p class="stage-tagline">Is the tool embedding into someone's workflow or sitting unused? Habit is the leading indicator of retention, which is the leading indicator of conversion once pricing is introduced.</p>
+      <table class="events">
+        <thead><tr><th>Event</th><th>Fields captured</th></tr></thead>
+        <tbody>
+          <tr><td>Last login date</td><td>date, channel (web app vs. extension) &nbsp;·&nbsp; <em>triggers re-engagement flows</em></td></tr>
+          <tr><td>Days since last save</td><td>flag at 7 / 14 / 21 / 28-day thresholds</td></tr>
+          <tr><td>Saves in last 7 / 14 / 28 days</td><td>rolling totals</td></tr>
+          <tr><td>Login days in last 30</td><td>count of distinct days &nbsp;·&nbsp; <em>shows workflow integration</em></td></tr>
+          <tr><td>Save source mix</td><td>% by platform (TikTok, IG, Substack, YouTube, article, other)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Depth of use</h3>
+        <span class="ct">7 events</span>
+      </div>
+      <p class="stage-tagline">Which features are actually driving value? If heavy searchers retain but light searchers don't, search quality becomes a retention lever.</p>
+      <table class="events">
+        <thead><tr><th>Event</th><th>Fields captured</th></tr></thead>
+        <tbody>
+          <tr><td>Total saves (lifetime)</td><td>count</td></tr>
+          <tr><td>Total insights generated</td><td>count + date of last insight</td></tr>
+          <tr><td>Folders + saves per folder</td><td># of folders, avg saves / folder</td></tr>
+          <tr><td>Features touched</td><td>Y/N per feature (save, folder, insight, search, keyword, edit, export) &nbsp;·&nbsp; breadth % (e.g. 4/7)</td></tr>
+          <tr><td>Search usage</td><td># searches / week, % that opened a save</td></tr>
+          <tr><td>Edits to AI summaries / insights</td><td># edits, % of saves with edited summary &nbsp;·&nbsp; <em>signals AI trust</em></td></tr>
+          <tr><td>CSV export used</td><td>first export date, total exports</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stage">
+      <div class="stage-head">
+        <h3>Advocacy &amp; ICP</h3>
+        <span class="ct">7 events</span>
+      </div>
+      <p class="stage-tagline">Who are our real fans, and do they fit the ICP we're building around? These are the people we want for testimonials, case studies, pilot pitches, and the first paid tier.</p>
+      <table class="events">
+        <thead><tr><th>Event</th><th>Fields captured</th></tr></thead>
+        <tbody>
+          <tr><td>Bug reports submitted</td><td>count, resolution status &nbsp;·&nbsp; <em>often the most invested users</em></td></tr>
+          <tr><td>Feature requests submitted</td><td>count, category</td></tr>
+          <tr><td>Niche / specialty declared</td><td>themes (ties to community build)</td></tr>
+          <tr><td>Work details</td><td>role, company, company type, seniority (from form / LinkedIn enrichment)</td></tr>
+          <tr><td>Slack community activity</td><td># messages last 30d, reacted to posts Y/N &nbsp;·&nbsp; <em>active in Slack + in-app = high intent</em></td></tr>
+          <tr><td>NPS / in-app sentiment</td><td>score, timestamp, free text</td></tr>
+          <tr><td>Referrals made / invites sent</td><td># sent, # accepted</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =============== DASHBOARD PREVIEW =============== -->
+  <section class="block" id="preview">
+    <div class="kicker">03 · Surfaced output</div>
+    <h2>Dashboard preview.</h2>
+    <p class="intro">What the assembled view looks like. Numbers below are illustrative placeholders showing the shape of each tile — replaced with live data once the event pipeline is wired up.</p>
+
+    <div class="dash-grid">
+
+      <!-- Activation funnel -->
+      <div class="tile col-8">
+        <h3>Activation funnel</h3>
+        <div class="sub">Cumulative conversion through first-value milestones · sample cohort of 247 signups</div>
+        <div class="funnel">
+          <div class="funnel-row">
+            <div class="funnel-label">Signed up</div>
+            <div><div class="funnel-bar" style="width:100%"></div></div>
+            <div class="funnel-val">247 <span class="pct">100%</span></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">Installed extension</div>
+            <div><div class="funnel-bar f2" style="width:77%"></div></div>
+            <div class="funnel-val">189 <span class="pct">77%</span></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">First save</div>
+            <div><div class="funnel-bar f3" style="width:63%"></div></div>
+            <div class="funnel-val">156 <span class="pct">63%</span></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">First folder</div>
+            <div><div class="funnel-bar f4" style="width:40%"></div></div>
+            <div class="funnel-val">98 <span class="pct">40%</span></div>
+          </div>
+          <div class="funnel-row">
+            <div class="funnel-label">First insight generated</div>
+            <div><div class="funnel-bar f5" style="width:22%"></div></div>
+            <div class="funnel-val">54 <span class="pct">22%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Headline stat -->
+      <div class="tile col-4">
+        <h3>L30 active users</h3>
+        <div class="sub">Distinct users with 1+ save or login</div>
+        <div class="big-stat">89 <span class="trend">↑ 14%</span></div>
+        <div class="big-cap">vs. previous 30-day window</div>
+
+        <div style="margin-top:1.25rem; padding-top:1rem; border-top: 1px solid var(--line);">
+          <h3 style="margin-bottom:0.1rem;">Avg sessions / active user</h3>
+          <div class="sub">Weekly</div>
+          <div class="big-stat">3.7</div>
+          <div class="big-cap">Median is 2.5; long tail at ≥5 = habit candidates</div>
+        </div>
+      </div>
+
+      <!-- Archetype counts -->
+      <div class="tile col-4">
+        <h3>Power-user tagging</h3>
+        <div class="sub">Count of users matching each archetype</div>
+        <div class="barlist">
+          <div class="barrow">
+            <div class="bar-label">Volume</div>
+            <div><div class="bar c2" style="width:72%"></div></div>
+            <div class="bar-val">18</div>
+          </div>
+          <div class="barrow">
+            <div class="bar-label">Synthesis</div>
+            <div><div class="bar" style="width:48%"></div></div>
+            <div class="bar-val">12</div>
+          </div>
+          <div class="barrow">
+            <div class="bar-label">Habit</div>
+            <div><div class="bar c3" style="width:36%"></div></div>
+            <div class="bar-val">9</div>
+          </div>
+          <div class="barrow" style="margin-top:0.5rem; padding-top:0.5rem; border-top: 1px solid var(--line);">
+            <div class="bar-label">Any archetype</div>
+            <div><div class="bar" style="width:96%; background: var(--ink);"></div></div>
+            <div class="bar-val">24 <span class="pct">9.7%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Source mix -->
+      <div class="tile col-4">
+        <h3>Save source mix</h3>
+        <div class="sub">% of saves by platform · L30D</div>
+        <div class="barlist">
+          <div class="barrow"><div class="bar-label">TikTok</div><div><div class="bar" style="width:100%"></div></div><div class="bar-val">34%</div></div>
+          <div class="barrow"><div class="bar-label">Instagram</div><div><div class="bar" style="width:65%"></div></div><div class="bar-val">22%</div></div>
+          <div class="barrow"><div class="bar-label">Article / web</div><div><div class="bar" style="width:53%"></div></div><div class="bar-val">18%</div></div>
+          <div class="barrow"><div class="bar-label">Substack</div><div><div class="bar" style="width:35%"></div></div><div class="bar-val">12%</div></div>
+          <div class="barrow"><div class="bar-label">YouTube</div><div><div class="bar" style="width:26%"></div></div><div class="bar-val">9%</div></div>
+          <div class="barrow"><div class="bar-label">Other</div><div><div class="bar" style="width:15%"></div></div><div class="bar-val">5%</div></div>
+        </div>
+      </div>
+
+      <!-- Engagement snapshot -->
+      <div class="tile col-4">
+        <h3>Depth-of-use snapshot</h3>
+        <div class="sub">Feature engagement · L30D</div>
+        <div class="stat-grid">
+          <div class="stat-mini"><div class="n">12.4</div><div class="l">avg saves / user</div></div>
+          <div class="stat-mini"><div class="n">2.1</div><div class="l">avg folders / user</div></div>
+          <div class="stat-mini"><div class="n">38%</div><div class="l">users who edited an AI output</div></div>
+          <div class="stat-mini"><div class="n">64%</div><div class="l">searches → opened a save</div></div>
+          <div class="stat-mini"><div class="n">4.2 / 7</div><div class="l">avg feature breadth</div></div>
+          <div class="stat-mini"><div class="n">11</div><div class="l">CSV exports (first-time users)</div></div>
+        </div>
+      </div>
+
+      <!-- Retention -->
+      <div class="tile col-4">
+        <h3>Weekly retention curve</h3>
+        <div class="sub">% of signup cohort returning · sample</div>
+        <div class="barlist" style="gap:0.6rem;">
+          <div class="ret-row"><div class="bar-label">Week 1</div><div class="ret-track"><div class="ret-fill" style="width:72%"></div></div><div class="bar-val">72%</div></div>
+          <div class="ret-row"><div class="bar-label">Week 2</div><div class="ret-track"><div class="ret-fill" style="width:54%"></div></div><div class="bar-val">54%</div></div>
+          <div class="ret-row"><div class="bar-label">Week 4</div><div class="ret-track"><div class="ret-fill" style="width:38%"></div></div><div class="bar-val">38%</div></div>
+          <div class="ret-row"><div class="bar-label">Week 8</div><div class="ret-track"><div class="ret-fill" style="width:26%"></div></div><div class="bar-val">26%</div></div>
+          <div class="ret-row"><div class="bar-label">Week 12</div><div class="ret-track"><div class="ret-fill" style="width:22%"></div></div><div class="bar-val">22%</div></div>
+        </div>
+      </div>
+
+      <!-- ICP signal -->
+      <div class="tile col-4">
+        <h3>Advocacy &amp; ICP signals</h3>
+        <div class="sub">Who our most invested users are</div>
+        <div class="stat-grid">
+          <div class="stat-mini"><div class="n">7</div><div class="l">bug reporters</div></div>
+          <div class="stat-mini"><div class="n">14</div><div class="l">feature requests</div></div>
+          <div class="stat-mini"><div class="n">+52</div><div class="l">NPS (n = 41)</div></div>
+          <div class="stat-mini"><div class="n">9</div><div class="l">referrals sent</div></div>
+          <div class="stat-mini"><div class="n">23</div><div class="l">active in Slack</div></div>
+          <div class="stat-mini"><div class="n">6</div><div class="l">on-ICP roles confirmed</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =============== OPEN QUESTIONS =============== -->
+  <section class="block" id="questions">
+    <div class="kicker">04 · Open with the technical team</div>
+    <h2>Feasibility questions to resolve.</h2>
+    <p class="intro">Questions that determine whether specific signals can be instrumented as designed. Flagged here so the tactical plan above stays honest about what's confirmed vs. pending.</p>
+
+    <div class="q-list">
+      <div class="q-item">
+        <div class="q-num">01</div>
+        <div class="q-text">Can we distinguish an edit that replaced the entire AI summary from one that only edited part of it? Matters for measuring "AI trust" signals.</div>
+        <div class="q-owner">Engineering</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">02</div>
+        <div class="q-text">Chrome extension: can we detect installs vs. uninstalls, or only active sessions? Determines whether "extension installed" is a clean activation milestone.</div>
+        <div class="q-owner">Engineering</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">03</div>
+        <div class="q-text">Can we tie Slack activity back to a HubSpot user (email match or another ID)? Required to cross-reference community engagement with in-app behavior.</div>
+        <div class="q-owner">Engineering + Ops</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">04</div>
+        <div class="q-text">How long does the system retain individual user events before deletion? Need ≥ 90 days to run 60-/90-day cohort comparisons.</div>
+        <div class="q-owner">Engineering</div>
+      </div>
+      <div class="q-item">
+        <div class="q-num">05</div>
+        <div class="q-text">How do we populate testimonials / comments, and can we pipe Slack insights in? Timing questions for referral links as well.</div>
+        <div class="q-owner">Product + Marketing</div>
+      </div>
+    </div>
+  </section>
 
   <footer class="site">
-    <div>© [Year] [Your Brand] · Alpha Feedback Dashboard</div>
-    <div>Template demo · Content is placeholder lorem ipsum</div>
+    <div>Digital Culturist · Power User Strategy &amp; Instrumentation · Template demo</div>
+    <div>Illustrative numbers · strategy is the real deliverable</div>
   </footer>
 </div>
 
 <script>
-/* ============ PLACEHOLDER DATA ============ */
+// Sticky anchor nav — highlight active section on scroll
+const anchors = document.querySelectorAll("nav.anchors a");
+const targets = [...anchors].map(a => document.querySelector(a.getAttribute("href")));
 
-const LOREM_SHORT  = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-const LOREM_MEDIUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-const LOREM_LONG   = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-
-const TESTERS = [
-  {
-    id: "t1",
-    name: "Tester 01",
-    when: "Responded [Date]",
-    sentiment: "skeptical",
-    sentimentLabel: "Skeptical · Generous",
-    gist: "Wouldn't use it in current workflow yet, but gave the most detailed feedback of the group.",
-    q1: { verdict: "none", text: "Did not report any bugs." },
-    q2: {
-      verdict: "no",
-      text: "Not yet — needs more examples of real-world value before adopting.",
-      quotes: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. I'd need more examples, a getting-started section, tips on what works, and perhaps a short walkthrough video."]
-    },
-    q3: {
-      verdict: "no",
-      text: "Output feels too long and trust is a barrier.",
-      quotes: ["Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. To build trust I'd need to know how the tool is reaching its conclusions, with links back to source material."]
-    },
-    q4: {
-      verdict: "mixed",
-      text: "Sort of. Wants a two-step flow and source attribution.",
-      quotes: ["Ut enim ad minim veniam, quis nostrud exercitation. A two-step process might help: first surface the major themes, then let me pick which one to go deeper on."]
-    },
-    q5: {
-      text: "More control over organization, less reliance on auto-generated output.",
-      bullets: [
-        "Placeholder request — lorem ipsum dolor sit amet.",
-        "Placeholder request — duis aute irure dolor.",
-        "Placeholder request — excepteur sint occaecat.",
-        "Placeholder request — sunt in culpa qui officia.",
-        "Placeholder request — nemo enim ipsam voluptatem.",
-        "Core job-to-be-done: make artifacts findable months from now."
-      ],
-      quotes: ["I hope this isn't discouraging — keep going!"]
-    }
-  },
-  {
-    id: "t2",
-    name: "Tester 02",
-    when: "Responded [Date]",
-    sentiment: "mixed",
-    sentimentLabel: "Mixed · Thoughtful",
-    gist: "Loves the core capture and organization. Wants the human to stay in the synthesis seat.",
-    q1: {
-      verdict: "some",
-      text: "A handful of bugs — none blocked testing.",
-      bullets: [
-        "Placeholder bug — lorem ipsum dolor sit amet.",
-        "Placeholder bug — consectetur adipiscing elit.",
-        "Placeholder bug — sed do eiusmod tempor.",
-        "Placeholder bug — ut labore et dolore magna."
-      ]
-    },
-    q2: {
-      verdict: "mixed",
-      text: "Implied yes, with a caveat about AI ownership of the thinking.",
-      quotes: [
-        "I enjoy the synthesis phase; that's my superpower. But it's hard to do that when the tool does all of it for me. I want help with this step — I don't want it replaced.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-      ]
-    },
-    q3: {
-      verdict: "mixed",
-      text: "Likes the headline. Output is too dense and text-heavy to scan.",
-      quotes: ["Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. I want this surface to 1) jog my memory and 2) surface a couple of quick patterns — not make me read three paragraphs."],
-      bullets: [
-        "Placeholder ask — lorem ipsum dolor sit amet.",
-        "Placeholder ask — ut enim ad minim veniam.",
-        "Placeholder ask — quis nostrud exercitation.",
-        "Placeholder ask — excepteur sint occaecat.",
-        "Placeholder ask — sunt in culpa qui officia."
-      ]
-    },
-    q4: {
-      verdict: "mixed",
-      text: "Got overwhelmed — mental energy required to verify.",
-      quotes: ["Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. I had to expend a lot of mental energy processing what it was saying and deciding whether I agreed."],
-      bullets: [
-        "Bullets instead of sentences.",
-        "Starter prompts to guide my own synthesis.",
-        "Eventually, search across my notes.",
-        "Ability to edit the output in-place."
-      ]
-    },
-    q5: {
-      text: "Small feature requests across capture, tagging, and search.",
-      bullets: [
-        "Lorem ipsum — in-context creation action.",
-        "Lorem ipsum — add annotations at capture time.",
-        "Lorem ipsum — lightweight dismissal interaction.",
-        "Lorem ipsum — surface secondary content on the item page.",
-        "Lorem ipsum — prime the tagging system upfront.",
-        "Lorem ipsum — user-added keywords.",
-        "Lorem ipsum — more factual tags.",
-        "Lorem ipsum — search would improve if output were more factual."
-      ]
-    }
-  },
-  {
-    id: "t3",
-    name: "Tester 03",
-    when: "Responded [Date]",
-    sentiment: "enthusiastic",
-    sentimentLabel: "Enthusiastic · Champion",
-    gist: "Most enthusiastic of the group. Would have used the tool on a live project.",
-    q1: {
-      verdict: "none",
-      text: "Nothing specific — saw one environment-level error that may not be tool-related."
-    },
-    q2: {
-      verdict: "yes",
-      text: "Yes. Would have used it on a recent project instead of an existing tool.",
-      quotes: ["Lorem ipsum dolor sit amet. I would have loved to have had this for the last project I ran — it would have replaced the tool I ended up using."]
-    },
-    q3: {
-      verdict: "yes",
-      text: "Yes — gave a fresh perspective on their own content.",
-      quotes: ["Ut enim ad minim veniam. Reading these summaries gave me a different POV on content I thought I already understood."]
-    },
-    q4: {
-      verdict: "yes",
-      text: "This is the headline feature — nailed it deeper than expected.",
-      quotes: ["THIS is the gold. The insight really nailed it deeper than I thought. I love the 'Why This Matters' framing because it tapped into the moment-right-now context."]
-    },
-    q5: {
-      text: "Wants overview surfaces — a broad map and a keyword rollup.",
-      bullets: [
-        "An overview of tags pulling through at large.",
-        "A map of connections across all saved items."
-      ],
-      quotes: ["This is so exciting and I cannot wait to use it for some of my upcoming projects!"]
-    }
-  },
-  {
-    id: "t4",
-    name: "Tester 04",
-    when: "Responded [Date]",
-    sentiment: "positive",
-    sentimentLabel: "Positive · Platform-blocked",
-    gist: "Clear yes — but a missing platform is a workflow blocker for her day-to-day.",
-    q1: {
-      verdict: "some",
-      text: "A few capture errors on one content source.",
-      bullets: [
-        "Placeholder bug — lorem ipsum dolor sit amet.",
-        "Placeholder bug — consectetur adipiscing elit.",
-        "Placeholder bug — sed do eiusmod tempor."
-      ]
-    },
-    q2: {
-      verdict: "yes",
-      text: "Definite use case — but one platform gap is a blocker.",
-      quotes: [
-        "Lorem ipsum dolor sit amet. Is there a way to use this from mobile? I typically save content on my phone.",
-        "Duis aute irure dolor. I definitely see a use case here — curious whether I'd see similarities across the content I've saved.",
-        "Excepteur sint occaecat. It'd be very interesting to see what other people are finding and how that correlates to what I'm saving."
-      ]
-    },
-    q3: {
-      verdict: "mixed",
-      text: "Helpful but too hefty. Existing source content is easier to digest.",
-      quotes: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. It is helpful but feels overwhelming to read — three paragraphs of text is more than I can scan. Even three bullet key takeaways would help."]
-    },
-    q4: {
-      verdict: "mixed",
-      text: "Same readability ask — wants bullets, visuals, and source links.",
-      bullets: [
-        "Bullets and/or visuals to illustrate the insight.",
-        "Link to the source items the insight pulls from.",
-        "Phase 2 — pull in supporting external content to strengthen the case."
-      ]
-    },
-    q5: {
-      text: "Two concrete asks around capture and selection UX.",
-      bullets: [
-        "Create organizational structures at the moment of capture.",
-        "Select-all and exclude-by-checkbox in multi-item flows."
-      ]
-    }
-  }
-];
-
-const BUGS = [
-  {
-    title: "Placeholder bug — sync delay in browser surface",
-    reporter: "Tester 02",
-    severity: "minor",
-    area: "Surface A",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A newly created object is not visible in a secondary surface until the page is reloaded.",
-    repro: "Create new object in primary surface → navigate to secondary surface → open tool → click relevant tab → object not visible → reload → object appears."
-  },
-  {
-    title: "Placeholder bug — field contamination on capture",
-    reporter: "Tester 02",
-    severity: "minor",
-    area: "Capture",
-    description: "Sed do eiusmod tempor incididunt. When capturing an item, an unrelated string shows up inside the notes field."
-  },
-  {
-    title: "Placeholder bug — post-action CTA label is confusing",
-    reporter: "Tester 02",
-    severity: "minor",
-    area: "Surface A",
-    description: "Ut enim ad minim veniam. The CTA after a successful action re-opens the action surface. The label should be clearer about what happens next."
-  },
-  {
-    title: "Placeholder bug — generation action returns error",
-    reporter: "Tester 02",
-    severity: "medium",
-    area: "Generation",
-    description: "Duis aute irure dolor. Selecting items → clicking generate → returns an error."
-  },
-  {
-    title: "Placeholder bug — repeated capture errors on source X",
-    reporter: "Tester 04",
-    severity: "medium",
-    area: "Capture",
-    description: "Excepteur sint occaecat cupidatat non proident. Multiple attempts to capture content from source X returned errors."
-  },
-  {
-    title: "Placeholder bug — captures fail from a specific entry point",
-    reporter: "Tester 04",
-    severity: "medium",
-    area: "Capture",
-    description: "Sunt in culpa qui officia. Captures fail when initiated from a specific entry point. Direct URL path works."
-  },
-  {
-    title: "Placeholder bug — content type misclassified",
-    reporter: "Tester 04",
-    severity: "minor",
-    area: "Classification",
-    description: "Nemo enim ipsam voluptatem. A single-item post was misclassified as a multi-item post."
-  },
-  {
-    title: "Placeholder bug — environment-level crash during selection",
-    reporter: "Tester 03",
-    severity: "minor",
-    area: "Unknown",
-    description: "Neque porro quisquam est. An environment-level error appeared while selecting items. Unclear if caused by the tool or by the environment."
-  }
-];
-
-const FEATURES = [
-  {
-    name: "Feature 01 — Core summary output",
-    positive: [
-      { who: "Tester 02", txt: "Lorem ipsum dolor sit amet. Likes the headline and the framing up top." },
-      { who: "Tester 03", txt: "Consectetur adipiscing elit. Gave a fresh POV on own content." },
-      { who: "Tester 04", txt: "Sed do eiusmod. Helpful overall." }
-    ],
-    negative: [
-      { who: "Tester 01", txt: "Ut labore et dolore magna. Too long — would almost rather read the source." },
-      { who: "Tester 02", txt: "Aliqua ut enim ad minim. Really text-heavy; slow to process." },
-      { who: "Tester 04", txt: "Veniam quis nostrud. Overwhelming to read — existing source content is easier to scan." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Exercitation ullamco laboris. Add source links on key phrases to build trust." },
-      { who: "Tester 02", txt: "Nisi ut aliquip ex ea. Pull a preview image to jog memory." },
-      { who: "Tester 02", txt: "Commodo consequat. Make the output more literal — label, not interpretation." },
-      { who: "Tester 04", txt: "Duis aute irure. Offer a succinct 3-bullet view." }
-    ]
-  },
-  {
-    name: "Feature 02 — Cross-item synthesis",
-    positive: [
-      { who: "Tester 03", txt: "Lorem ipsum — \"THIS is the gold.\" The cross-item synthesis landed deeper than expected." },
-      { who: "Tester 02", txt: "Dolor sit amet. Liked being able to edit the title and body in-place." }
-    ],
-    negative: [
-      { who: "Tester 01", txt: "Consectetur adipiscing. Not sure the takeaway is trustworthy." },
-      { who: "Tester 02", txt: "Sed do eiusmod. Output was so robust she had to expend a lot of energy verifying it." },
-      { who: "Tester 04", txt: "Tempor incididunt. Same readability ask — too heavy to read." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Ut labore et dolore. Two-step flow: surface themes first, then pick one to go deeper on." },
-      { who: "Tester 02", txt: "Magna aliqua. Bullets over sentences. Starter prompts in a notes pane." },
-      { who: "Tester 04", txt: "Ut enim ad minim. Bullets and/or visuals, plus links to source items." }
-    ]
-  },
-  {
-    name: "Feature 03 — Auto-categorization / tags",
-    positive: [
-      { who: "Tester 02", txt: "Lorem ipsum — loves that tagging is automatic. \"Tags are so hard!\"" }
-    ],
-    negative: [
-      { who: "Tester 02", txt: "Dolor sit amet. Not the highest priority, but tags could be more factual." },
-      { who: "Tester 01", txt: "Consectetur adipiscing. Wants to add his own genre/theme tags." }
-    ],
-    suggestions: [
-      { who: "Tester 02", txt: "Sed do eiusmod. Let users prime the system with tracked topics upfront." },
-      { who: "Tester 03", txt: "Tempor incididunt. An overview of tags pulling through at large." }
-    ]
-  },
-  {
-    name: "Feature 04 — Organization / grouping",
-    positive: [
-      { who: "Tester 02", txt: "Lorem ipsum — being able to store and group saves is \"AWESOME.\"" }
-    ],
-    negative: [
-      { who: "Tester 02", txt: "Sed do eiusmod. Sync delay between surfaces after creation (see Bugs)." }
-    ],
-    suggestions: [
-      { who: "Tester 02", txt: "Ut labore et dolore. Create organizational structures in context, not just on the main surface." },
-      { who: "Tester 04", txt: "Magna aliqua. Create organization at the moment of capture." }
-    ]
-  },
-  {
-    name: "Feature 05 — Browser extension / surface A",
-    positive: [
-      { who: "Tester 02", txt: "Lorem ipsum — generally worked as expected. Easy setup, easy to capture." }
-    ],
-    negative: [
-      { who: "Tester 02", txt: "Dolor sit amet. Sync issue (needs reload). Post-action CTA label is confusing." }
-    ],
-    suggestions: [
-      { who: "Tester 02", txt: "Consectetur adipiscing. Add in-context annotations. Allow dismissal via click-outside." },
-      { who: "Tester 04", txt: "Sed do eiusmod. Enable in-context structure creation." }
-    ]
-  },
-  {
-    name: "Feature 06 — Mobile / second platform",
-    positive: [],
-    negative: [
-      { who: "Tester 04", txt: "Lorem ipsum — workflow blocker. Captures happen on mobile for this tester." }
-    ],
-    suggestions: [
-      { who: "Tester 04", txt: "Dolor sit amet. Enable mobile capture or a mobile bridge." }
-    ]
-  },
-  {
-    name: "Feature 07 — Source X / source Y captures",
-    positive: [
-      { who: "Tester 02", txt: "Lorem ipsum — generally worked across sources." },
-      { who: "Tester 03", txt: "Dolor sit amet. Captured from own content library successfully." }
-    ],
-    negative: [
-      { who: "Tester 02", txt: "Consectetur adipiscing. Field contamination on capture (see Bugs)." },
-      { who: "Tester 04", txt: "Sed do eiusmod. Repeated capture errors on source X; one entry point fails while direct URL works. One item misclassified." }
-    ],
-    suggestions: [
-      { who: "Tester 02", txt: "Ut labore et dolore. Surface secondary signals (e.g. top comments) on the item page." }
-    ]
-  },
-  {
-    name: "Feature 08 — User annotations",
-    positive: [],
-    negative: [
-      { who: "Tester 01", txt: "Lorem ipsum — cannot add quick notes at capture time to capture intent." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Dolor sit amet. Inline annotation at the moment of capture." },
-      { who: "Tester 02", txt: "Consectetur adipiscing. Annotate directly from the capture surface." }
-    ]
-  },
-  {
-    name: "Feature 09 — Preview images / thumbnails",
-    positive: [],
-    negative: [
-      { who: "Tester 01", txt: "Lorem ipsum — current thumbnails don't reflect saved content." },
-      { who: "Tester 02", txt: "Dolor sit amet. Without a preview image, the summary is doing all the memory work." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Consectetur adipiscing. Thumbnail should be the hero image from the item." },
-      { who: "Tester 02", txt: "Sed do eiusmod. Pull a preview image like a messaging-app link unfurl." }
-    ]
-  },
-  {
-    name: "Feature 10 — Alt content types (images/infographics)",
-    positive: [],
-    negative: [
-      { who: "Tester 01", txt: "Lorem ipsum — unclear how to save non-article content types." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Dolor sit amet. Support image/visual saves directly, with the image as the thumbnail." }
-    ]
-  },
-  {
-    name: "Feature 11 — Search",
-    positive: [
-      { who: "Tester 02", txt: "Lorem ipsum — some search terms worked." }
-    ],
-    negative: [
-      { who: "Tester 01", txt: "Dolor sit amet. Core need: find a specific item months later with hundreds of saves." },
-      { who: "Tester 02", txt: "Consectetur adipiscing. Some search terms didn't return expected results." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Sed do eiusmod. More tools around organization — make items findable later. This is the differentiator." },
-      { who: "Tester 02", txt: "Tempor incididunt. More factual output would also improve search." }
-    ]
-  },
-  {
-    name: "Feature 12 — Cross-item visualization",
-    positive: [],
-    negative: [],
-    suggestions: [
-      { who: "Tester 03", txt: "Lorem ipsum — a map of connections across saved items." },
-      { who: "Tester 03", txt: "Dolor sit amet. A rollup view of tags pulling through at large." }
-    ]
-  },
-  {
-    name: "Feature 13 — Onboarding & social",
-    positive: [],
-    negative: [
-      { who: "Tester 01", txt: "Lorem ipsum — needs more examples before adopting into workflow." }
-    ],
-    suggestions: [
-      { who: "Tester 01", txt: "Dolor sit amet. A Getting Started section plus a worked example comparing manual vs. tool-assisted." },
-      { who: "Tester 04", txt: "Consectetur adipiscing. Curious about what other users are finding and how it correlates." }
-    ]
-  }
-];
-
-const THEMES = [
-  { n: "1", title: "Placeholder theme — density vs. scannability", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Multiple testers independently said the core output feels too heavy and text-dense. They want bullets over paragraphs, a visual to jog memory, and more literal descriptions of what's inside — instead of interpretive prose." },
-  { n: "2", title: "Placeholder theme — humans want to own the synthesis", body: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The strongest philosophical signal — testers want the tool to scaffold their thinking, not replace it. They asked for a two-step flow where the tool surfaces options and the human picks the direction, with source attribution visible throughout." },
-  { n: "3", title: "Placeholder theme — organization is the hidden differentiator", body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco. Testers want more control: user-added tags, annotations at capture time, in-context organizational actions, and thumbnails that reflect the content. If the tool can't help me find this thing again months from now, it's competing with a folder + generic AI — and losing." },
-  { n: "4", title: "Placeholder theme — platform gaps slow adoption", body: "Duis aute irure dolor in reprehenderit in voluptate. A missing platform (mobile in this case) and missing in-context actions in a secondary surface slowed adoption. Capture has to match where testers already live." },
-  { n: "5", title: "Placeholder theme — bugs are minor and clustered", body: "Excepteur sint occaecat cupidatat non proident. No blockers. Reported issues cluster around a specific content source, a secondary surface, and one generation error. All solvable." }
-];
-
-const INSIGHTS = [
-  {
-    eyebrow: "Insight 01",
-    title: "The output should be a label, not a take.",
-    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Three of four testers wanted the same thing: shorter, bulleted, and more literal. Restructuring this one surface is the single clearest product improvement in the alpha."
-  },
-  {
-    eyebrow: "Insight 02",
-    title: "Synthesis landed when the tool showed its work — and failed when it didn't.",
-    body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. The testers who trusted the output were the ones who could see its sources. A two-step flow (themes first, deep-dive second) with source attribution on every claim turns the same feature into something every tester could trust."
-  },
-  {
-    eyebrow: "Insight 03",
-    title: "Organization is the hidden differentiator.",
-    body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The testers who pushed back hardest weren't pushing back on AI — they were pushing back on AI at the expense of organization. User-added tags, notes at capture time, visual thumbnails and better search are the features that make this feel like a personal archive rather than a generic AI tool."
-  }
-];
-
-const TESTIMONIALS = [
-  { quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. THIS is the gold. The synthesis really nailed it deeper than I thought.", cite: "Tester 03 — on the cross-item synthesis feature" },
-  { quote: "Sed do eiusmod tempor incididunt. Being able to store and group things is AWESOME.", cite: "Tester 02" },
-  { quote: "Ut enim ad minim veniam. This is so exciting and I cannot wait to use it for my upcoming projects.", cite: "Tester 03" },
-  { quote: "Duis aute irure dolor. I definitely see a use case here — I'm curious whether I'd see similarities across the content I've saved.", cite: "Tester 04" },
-  { quote: "Excepteur sint occaecat. I hope this isn't discouraging — keep going!", cite: "Tester 01" }
-];
-
-/* ============ RENDER ============ */
-
-const Q_TITLES = {
-  q1: "Q1. Are there any bugs?",
-  q2: "Q2. Would you use this in your current workflow?",
-  q3: "Q3. Is the core output useful?",
-  q4: "Q4. Is the cross-item synthesis useful?",
-  q5: "Q5. What slight tweak would be a game-changer?"
-};
-
-function verdictTag(v) {
-  if (!v || v === "none") return "";
-  const map = { yes: "verdict-yes", no: "verdict-no", mixed: "verdict-mixed", some: "verdict-mixed" };
-  const label = { yes: "Yes", no: "No", mixed: "Mixed", some: "Some" }[v] || v;
-  return `<span class="verdict ${map[v] || "verdict-mixed"}">${label}</span>`;
+function setActive() {
+  const y = window.scrollY + 120;
+  let idx = 0;
+  targets.forEach((t, i) => { if (t && t.offsetTop <= y) idx = i; });
+  anchors.forEach((a, i) => a.classList.toggle("active", i === idx));
 }
-
-function renderAnswer(ans) {
-  if (!ans) return `<div class="answer"><span class="empty">No response.</span></div>`;
-  const verdict = verdictTag(ans.verdict);
-  const text = ans.text ? `${verdict}${ans.text}` : verdict;
-  const bullets = (ans.bullets && ans.bullets.length)
-    ? `<ul>${ans.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : "";
-  const quotes = (ans.quotes && ans.quotes.length)
-    ? ans.quotes.map(q => `<blockquote class="q">"${q}"</blockquote>`).join("") : "";
-  return `<div class="answer">${text}${bullets}${quotes}</div>`;
-}
-
-function renderUsers() {
-  const el = document.getElementById("user-grid");
-  el.innerHTML = TESTERS.map(t => `
-    <article class="tester">
-      <div class="tester-head">
-        <div>
-          <div class="name">${t.name}</div>
-          <div class="when">${t.when}</div>
-        </div>
-        <div class="sent-badge sent-${t.sentiment}">${t.sentimentLabel}</div>
-      </div>
-      <div class="tester-body">
-        <div class="gist">${t.gist}</div>
-        ${["q1","q2","q3","q4","q5"].map(k => `
-          <div class="q-block">
-            <h4>${Q_TITLES[k]}</h4>
-            ${renderAnswer(t[k])}
-          </div>
-        `).join("")}
-      </div>
-    </article>
-  `).join("");
-}
-
-function renderBugs() {
-  const el = document.getElementById("bug-list");
-  el.innerHTML = BUGS.map(b => `
-    <div class="bug">
-      <div class="bug-main">
-        <div class="top">
-          <h3>${b.title}</h3>
-          <span class="sev sev-${b.severity}">${b.severity}</span>
-        </div>
-        <div><span class="reporter">Reported by ${b.reporter}</span></div>
-        <p>${b.description}</p>
-        ${b.repro ? `<div class="repro"><strong>Repro:</strong> ${b.repro}</div>` : ""}
-      </div>
-      <div class="area">${b.area}</div>
-    </div>
-  `).join("");
-}
-
-function renderFeatures() {
-  const el = document.getElementById("feature-list");
-  el.innerHTML = FEATURES.map((f, i) => {
-    const p = f.positive.length, n = f.negative.length, s = f.suggestions.length;
-    const renderCol = (items, kind, label) => `
-      <div class="f-col ${kind}">
-        <h4>${label} · ${items.length}</h4>
-        ${items.length ? `<ul>${items.map(x => `<li><span class="who">${x.who}</span>${x.txt}</li>`).join("")}</ul>` : `<div class="empty">No notes</div>`}
-      </div>`;
-    return `
-      <div class="feature" data-idx="${i}">
-        <div class="feature-head" onclick="toggleFeature(${i})">
-          <h3>${f.name}</h3>
-          <div class="feature-counts">
-            <span class="ftag ftag-pos">+${p} liked</span>
-            <span class="ftag ftag-neg">−${n} concerns</span>
-            <span class="ftag ftag-sug">${s} ideas</span>
-            <span class="toggle">+</span>
-          </div>
-        </div>
-        <div class="feature-body">
-          ${renderCol(f.positive, "pos", "Liked")}
-          ${renderCol(f.negative, "neg", "Concerns")}
-          ${renderCol(f.suggestions, "sug", "Suggestions")}
-        </div>
-      </div>
-    `;
-  }).join("");
-}
-
-function toggleFeature(i) {
-  const el = document.querySelector(`.feature[data-idx="${i}"]`);
-  el.classList.toggle("open");
-}
-
-function renderInsights() {
-  document.getElementById("sentiment-row").innerHTML = TESTERS.map(t => `
-    <div class="sent-card">
-      <div class="nm">${t.name}</div>
-      <div class="g">${t.gist}</div>
-      <div><span class="sent-badge sent-${t.sentiment}">${t.sentimentLabel}</span></div>
-    </div>
-  `).join("");
-
-  document.getElementById("theme-list").innerHTML = THEMES.map(t => `
-    <div class="theme">
-      <div class="theme-num">${t.n}</div>
-      <div>
-        <h3>${t.title}</h3>
-        <p>${t.body}</p>
-      </div>
-    </div>
-  `).join("");
-
-  document.getElementById("insight-list").innerHTML = INSIGHTS.map(i => `
-    <div class="insight-big">
-      <div class="eyebrow">${i.eyebrow}</div>
-      <h3>${i.title}</h3>
-      <p>${i.body}</p>
-    </div>
-  `).join("");
-
-  document.getElementById("quote-grid").innerHTML = TESTIMONIALS.map(t => `
-    <div class="quote">
-      <blockquote>"${t.quote}"</blockquote>
-      <cite>— ${t.cite}</cite>
-    </div>
-  `).join("");
-}
-
-document.querySelectorAll(".tab-btn").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
-    btn.classList.add("active");
-    document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-});
-
-renderUsers();
-renderBugs();
-renderFeatures();
-renderInsights();
+window.addEventListener("scroll", setActive, { passive: true });
+setActive();
 </script>
 </body>
 </html>
