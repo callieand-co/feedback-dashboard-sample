@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Power User Strategy — Instrumentation Sample</title>
-<meta name="description" content="Strategy to instrumentation — how a PLG framework becomes a measurement plan. Sample work product." />
+<title>Digital Culturist — Beta Community Dashboard</title>
+<meta name="description" content="Shared view of the Digital Culturist beta community — who's here, what we're saving, and what patterns we're catching together." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -40,19 +40,7 @@
   }
   .wrap { max-width: 72rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
-  /* ===== Banner + Header ===== */
-  .sample-banner {
-    background: var(--happy);
-    border: 1px solid var(--ink);
-    border-radius: 10px;
-    padding: 0.55rem 1rem;
-    font-size: 0.88rem;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
-    text-align: center;
-  }
-  .sample-banner strong { font-weight: 700; }
-
+  /* ===== Header ===== */
   header.site {
     display: flex;
     align-items: center;
@@ -120,6 +108,117 @@
   }
   .kpi .num { font-weight: 800; font-size: 1.5rem; line-height: 1.1; color: var(--ink); }
   .kpi .lbl { font-size: 0.78rem; color: var(--ink-mute); margin-top: 0.2rem; }
+  .kpi.kpi-primary {
+    background: var(--ink);
+    border-color: var(--ink);
+    padding: 0.9rem 1.15rem;
+    min-width: 140px;
+  }
+  .kpi.kpi-primary .num { color: var(--happy); font-size: 2.4rem; }
+  .kpi.kpi-primary .lbl { color: #cdd4e0; font-weight: 600; }
+
+  /* ===== Community spotlight ===== */
+  .spotlight {
+    background: linear-gradient(135deg, var(--happy-soft) 0%, #fff6d9 100%);
+    border: 1px solid var(--line-strong);
+    border-left: 5px solid var(--happy);
+    border-radius: 14px;
+    padding: 1.35rem 1.5rem;
+    margin: 0 0 2rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 1.25rem;
+    align-items: center;
+    position: relative;
+  }
+  .spotlight-kicker {
+    position: absolute;
+    top: -0.55rem;
+    left: 1.25rem;
+    background: var(--ink);
+    color: var(--happy);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+  }
+  .spot-avatar {
+    width: 4.5rem; height: 4.5rem;
+    border-radius: 999px;
+    display: grid; place-items: center;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #fff;
+    border: 2px solid var(--ink);
+    flex-shrink: 0;
+  }
+  .spot-info .spot-name {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+  .spot-info .spot-role {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--marinade);
+    margin-top: 0.15rem;
+    letter-spacing: 0.01em;
+  }
+  .spot-info .spot-trend {
+    margin-top: 0.55rem;
+    color: var(--ink);
+    font-size: 1rem;
+    font-style: italic;
+  }
+  .spot-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .spot-controls {
+    display: flex; gap: 0.4rem;
+  }
+  .spot-btn {
+    width: 2rem; height: 2rem;
+    border-radius: 999px;
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: background 120ms, transform 120ms;
+  }
+  .spot-btn:hover { background: var(--neutral); }
+  .spot-btn:active { transform: translateY(1px); }
+  .spot-dots {
+    display: flex; gap: 0.35rem;
+  }
+  .spot-dot {
+    width: 0.5rem; height: 0.5rem;
+    border-radius: 999px;
+    background: var(--line-strong);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+  .spot-dot.active { background: var(--ink); }
+  @media (max-width: 720px) {
+    .spotlight {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+    }
+    .spot-nav {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 
   /* ===== Anchor nav ===== */
   nav.anchors {
@@ -440,10 +539,6 @@
 <body>
 <div class="wrap">
 
-  <div class="sample-banner">
-    <strong>Case study · Sample work product.</strong> Dashboard numbers in the preview section are illustrative. Strategy and instrumentation plan are the real deliverable.
-  </div>
-
   <header class="site">
     <div class="brand">
       <div class="brand-logo" aria-hidden="true">
@@ -457,22 +552,39 @@
       </div>
       <div>
         <div class="brand-title">Digital Culturist</div>
-        <div class="brand-sub">Power User Strategy · Instrumentation Plan</div>
+        <div class="brand-sub">Beta Community Dashboard</div>
       </div>
     </div>
-    <div class="pill"><span class="dot"></span> Product-led growth · pre-monetization</div>
+    <div class="pill"><span class="dot"></span> Live view · we update this together</div>
   </header>
 
   <section class="hero">
     <div>
-      <h1>From strategy to <span class="mark">instrumentation,</span> in one view.</h1>
-      <p class="lede">How a product-led growth framework becomes a measurement plan — three power-user archetypes, the lifecycle events that surface them, and the dashboard tiles they power. Built for alignment across product, engineering, and marketing.</p>
+      <h1>200 culturists, <span class="mark">signal-spotting</span> together.</h1>
+      <p class="lede">Our shared view of the Digital Culturist beta — who's here, what we're saving, and the patterns we're catching as a group. Pull it up in meetings, riff on it at meetups, drop in what you're noticing.</p>
     </div>
     <div class="kpi-row">
-      <div class="kpi"><div class="num">3</div><div class="lbl">Power-user archetypes</div></div>
-      <div class="kpi"><div class="num">4</div><div class="lbl">Lifecycle stages</div></div>
-      <div class="kpi"><div class="num">22</div><div class="lbl">Tracked events</div></div>
-      <div class="kpi"><div class="num">5</div><div class="lbl">Open questions</div></div>
+      <div class="kpi kpi-primary"><div class="num">200</div><div class="lbl">Community members</div></div>
+      <div class="kpi"><div class="num">89</div><div class="lbl">Active this month</div></div>
+      <div class="kpi"><div class="num">24</div><div class="lbl">Power users tagged</div></div>
+      <div class="kpi"><div class="num">1,247</div><div class="lbl">Saves this week</div></div>
+    </div>
+  </section>
+
+  <section class="spotlight" id="spotlight" aria-live="polite">
+    <div class="spotlight-kicker">Culturist spotlight</div>
+    <div class="spot-avatar" id="spot-avatar">K</div>
+    <div class="spot-info">
+      <div class="spot-name" id="spot-name">Kana</div>
+      <div class="spot-role" id="spot-role">Cultural Strategist</div>
+      <div class="spot-trend" id="spot-trend">"Called the Millennial pink trend before it happened."</div>
+    </div>
+    <div class="spot-nav">
+      <div class="spot-controls">
+        <button class="spot-btn" id="spot-prev" aria-label="Previous culturist">←</button>
+        <button class="spot-btn" id="spot-next" aria-label="Next culturist">→</button>
+      </div>
+      <div class="spot-dots" id="spot-dots"></div>
     </div>
   </section>
 
@@ -485,9 +597,9 @@
 
   <!-- =============== ARCHETYPES =============== -->
   <section class="block" id="archetypes">
-    <div class="kicker">01 · Conceptual framework</div>
-    <h2>Three power-user archetypes.</h2>
-    <p class="intro">Any user can hold one or more tags. Each archetype comes from a different product-led growth hypothesis — storage depth, value delivery, and usage cadence — so the instrumentation plan covers all three.</p>
+    <div class="kicker">01 · Who's power-using</div>
+    <h2>Three ways we're showing up as power users.</h2>
+    <p class="intro">Any culturist can hold one or more tags — built from three different signals of a tool becoming part of how you work: storage depth, value delivery, and usage cadence. If you're seeing yourself here, we want to hear about it.</p>
 
     <div class="arch-grid">
       <article class="arch volume">
@@ -531,9 +643,9 @@
 
   <!-- =============== LIFECYCLE =============== -->
   <section class="block" id="lifecycle">
-    <div class="kicker">02 · Tactical instrumentation</div>
-    <h2>Lifecycle events &amp; fields.</h2>
-    <p class="intro">Four stages, each with the events we instrument and the fields captured on each event. The fields are what power the archetype rules above and the dashboard tiles below.</p>
+    <div class="kicker">02 · What we're watching</div>
+    <h2>The signals we're tracking together.</h2>
+    <p class="intro">Four stages of how we move from signing up to becoming power culturists. Each one has its own events — these are what power the archetype rules above and the community snapshot below.</p>
 
     <div class="stage">
       <div class="stage-head">
@@ -615,41 +727,41 @@
 
   <!-- =============== DASHBOARD PREVIEW =============== -->
   <section class="block" id="preview">
-    <div class="kicker">03 · Surfaced output</div>
-    <h2>Dashboard preview.</h2>
-    <p class="intro">What the assembled view looks like. Numbers below are illustrative placeholders showing the shape of each tile — replaced with live data once the event pipeline is wired up.</p>
+    <div class="kicker">03 · Where we are this week</div>
+    <h2>Community snapshot.</h2>
+    <p class="intro">A live read of the beta — how we're moving from signup to first-value, who's hitting power-user status, what we're saving from where, and how we're coming back week over week.</p>
 
     <div class="dash-grid">
 
       <!-- Activation funnel -->
       <div class="tile col-8">
         <h3>Activation funnel</h3>
-        <div class="sub">Cumulative conversion through first-value milestones · sample cohort of 247 signups</div>
+        <div class="sub">How the 200 of us moved from sign-up to first-value</div>
         <div class="funnel">
           <div class="funnel-row">
             <div class="funnel-label">Signed up</div>
             <div><div class="funnel-bar" style="width:100%"></div></div>
-            <div class="funnel-val">247 <span class="pct">100%</span></div>
+            <div class="funnel-val">200 <span class="pct">100%</span></div>
           </div>
           <div class="funnel-row">
             <div class="funnel-label">Installed extension</div>
             <div><div class="funnel-bar f2" style="width:77%"></div></div>
-            <div class="funnel-val">189 <span class="pct">77%</span></div>
+            <div class="funnel-val">154 <span class="pct">77%</span></div>
           </div>
           <div class="funnel-row">
             <div class="funnel-label">First save</div>
             <div><div class="funnel-bar f3" style="width:63%"></div></div>
-            <div class="funnel-val">156 <span class="pct">63%</span></div>
+            <div class="funnel-val">126 <span class="pct">63%</span></div>
           </div>
           <div class="funnel-row">
             <div class="funnel-label">First folder</div>
             <div><div class="funnel-bar f4" style="width:40%"></div></div>
-            <div class="funnel-val">98 <span class="pct">40%</span></div>
+            <div class="funnel-val">80 <span class="pct">40%</span></div>
           </div>
           <div class="funnel-row">
             <div class="funnel-label">First insight generated</div>
             <div><div class="funnel-bar f5" style="width:22%"></div></div>
-            <div class="funnel-val">54 <span class="pct">22%</span></div>
+            <div class="funnel-val">44 <span class="pct">22%</span></div>
           </div>
         </div>
       </div>
@@ -671,8 +783,8 @@
 
       <!-- Archetype counts -->
       <div class="tile col-4">
-        <h3>Power-user tagging</h3>
-        <div class="sub">Count of users matching each archetype</div>
+        <h3>Power users, right now</h3>
+        <div class="sub">How many of us are hitting each pattern</div>
         <div class="barlist">
           <div class="barrow">
             <div class="bar-label">Volume</div>
@@ -690,9 +802,9 @@
             <div class="bar-val">9</div>
           </div>
           <div class="barrow" style="margin-top:0.5rem; padding-top:0.5rem; border-top: 1px solid var(--line);">
-            <div class="bar-label">Any archetype</div>
+            <div class="bar-label">Any tag</div>
             <div><div class="bar" style="width:96%; background: var(--ink);"></div></div>
-            <div class="bar-val">24 <span class="pct">9.7%</span></div>
+            <div class="bar-val">24 <span class="pct">12%</span></div>
           </div>
         </div>
       </div>
@@ -757,9 +869,9 @@
 
   <!-- =============== OPEN QUESTIONS =============== -->
   <section class="block" id="questions">
-    <div class="kicker">04 · Open with the technical team</div>
-    <h2>Feasibility questions to resolve.</h2>
-    <p class="intro">Questions that determine whether specific signals can be instrumented as designed. Flagged here so the tactical plan above stays honest about what's confirmed vs. pending.</p>
+    <div class="kicker">04 · What we're figuring out</div>
+    <h2>Open questions.</h2>
+    <p class="intro">Things we're still working through — flagged here so the whole group sees what's confirmed vs. pending. If you spot a gap or have an idea, bring it to the next meetup or drop it in the community Slack.</p>
 
     <div class="q-list">
       <div class="q-item">
@@ -791,13 +903,93 @@
   </section>
 
   <footer class="site">
-    <div>Digital Culturist · Power User Strategy &amp; Instrumentation · Template demo</div>
-    <div>Illustrative numbers · strategy is the real deliverable</div>
+    <div>Digital Culturist · Beta Community Dashboard · Updated weekly</div>
+    <div>Spotted something early? Bring it to the next meetup.</div>
   </footer>
 </div>
 
 <script>
-// Sticky anchor nav — highlight active section on scroll
+// ========= Community spotlight rotation =========
+const SPOTLIGHTS = [
+  {
+    name: "Kana",
+    role: "Cultural Strategist",
+    trend: "Called the Millennial pink trend before it happened.",
+    color: "#c36235"
+  },
+  {
+    name: "Priya",
+    role: "Research Director",
+    trend: "Spotted the \"quiet luxury\" pattern six months before NYT coverage.",
+    color: "#02b2ad"
+  },
+  {
+    name: "Marcus",
+    role: "Social Strategist",
+    trend: "First to flag the trad-wife content migration out of fitness spaces.",
+    color: "#1a304e"
+  },
+  {
+    name: "Lena",
+    role: "Independent Analyst",
+    trend: "Tracked the wellness-to-woo pipeline across TikTok and Substack weeks ahead of the mainstream pickup.",
+    color: "#113a3a"
+  }
+];
+
+let spotIdx = 0;
+const spotAvatar = document.getElementById("spot-avatar");
+const spotName   = document.getElementById("spot-name");
+const spotRole   = document.getElementById("spot-role");
+const spotTrend  = document.getElementById("spot-trend");
+const spotDots   = document.getElementById("spot-dots");
+
+SPOTLIGHTS.forEach((_, i) => {
+  const d = document.createElement("button");
+  d.className = "spot-dot" + (i === 0 ? " active" : "");
+  d.setAttribute("aria-label", `Culturist ${i + 1} of ${SPOTLIGHTS.length}`);
+  d.addEventListener("click", () => { spotIdx = i; renderSpot(); resetAutoplay(); });
+  spotDots.appendChild(d);
+});
+
+function renderSpot() {
+  const s = SPOTLIGHTS[spotIdx];
+  spotAvatar.textContent = s.name.charAt(0);
+  spotAvatar.style.background = s.color;
+  spotName.textContent  = s.name;
+  spotRole.textContent  = s.role;
+  spotTrend.textContent = `"${s.trend}"`;
+  [...spotDots.children].forEach((d, i) => d.classList.toggle("active", i === spotIdx));
+}
+
+document.getElementById("spot-prev").addEventListener("click", () => {
+  spotIdx = (spotIdx - 1 + SPOTLIGHTS.length) % SPOTLIGHTS.length;
+  renderSpot(); resetAutoplay();
+});
+document.getElementById("spot-next").addEventListener("click", () => {
+  spotIdx = (spotIdx + 1) % SPOTLIGHTS.length;
+  renderSpot(); resetAutoplay();
+});
+
+let spotTimer;
+function startAutoplay() {
+  spotTimer = setInterval(() => {
+    spotIdx = (spotIdx + 1) % SPOTLIGHTS.length;
+    renderSpot();
+  }, 8000);
+}
+function resetAutoplay() {
+  clearInterval(spotTimer);
+  startAutoplay();
+}
+const spotEl = document.getElementById("spotlight");
+spotEl.addEventListener("mouseenter", () => clearInterval(spotTimer));
+spotEl.addEventListener("mouseleave", () => startAutoplay());
+
+renderSpot();
+startAutoplay();
+
+// ========= Sticky anchor nav highlighting =========
 const anchors = document.querySelectorAll("nav.anchors a");
 const targets = [...anchors].map(a => document.querySelector(a.getAttribute("href")));
 
