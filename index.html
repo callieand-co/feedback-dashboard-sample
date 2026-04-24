@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alpha Feedback Dashboard — Sample / Template</title>
+<meta name="description" content="Sample alpha feedback dashboard — a redacted template showing how we structure tester feedback into a shareable review view." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neutral: #f6f2e4;
+    --paper: #ffffff;
+    --ink: #1a304e;
+    --ink-soft: #445773;
+    --ink-mute: #6a7a91;
+    --line: #e4dfcc;
+    --line-strong: #d4cdb2;
+    --aqua: #02b2ad;
+    --aqua-soft: #e2f4f3;
+    --marinade: #c36235;
+    --marinade-soft: #f7e4da;
+    --happy: #ffd546;
+    --happy-soft: #fff3c2;
+    --heart: #e2451e;
+    --heart-soft: #fadcd1;
+    --vert: #113a3a;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--neutral);
+    color: var(--ink);
+    font-family: "K2D", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--marinade); }
+
+  .wrap {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 2rem 1.25rem 4rem;
+  }
+
+  /* Sample banner */
+  .sample-banner {
+    background: var(--happy);
+    border: 1px solid var(--ink);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  .sample-banner strong { font-weight: 700; }
+
+  header.site {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .brand { display: flex; align-items: center; gap: 0.75rem; }
+  .brand-logo {
+    width: 44px; height: 44px;
+    background: var(--happy);
+    border: 1.5px solid var(--ink);
+    border-radius: 10px;
+    display: grid; place-items: center;
+  }
+  .brand-logo svg { width: 28px; height: 28px; }
+  .brand-title {
+    font-family: "K2D", sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .brand-sub {
+    font-size: 0.85rem;
+    color: var(--ink-mute);
+    margin-top: 0.15rem;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.85rem; font-weight: 500;
+    background: var(--paper);
+    color: var(--ink);
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+  }
+  .pill .dot {
+    width: 0.5rem; height: 0.5rem;
+    background: var(--aqua);
+    border-radius: 999px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    line-height: 1.15;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .hero h1 .mark {
+    background: var(--happy);
+    padding: 0 0.2em;
+    border-radius: 4px;
+  }
+  .hero p.lede {
+    margin: 0.75rem 0 0;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 56ch;
+  }
+  .kpi-row {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    justify-content: flex-end;
+  }
+  .kpi {
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    min-width: 96px;
+    text-align: left;
+  }
+  .kpi .num {
+    font-weight: 800;
+    font-size: 1.5rem;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .kpi .lbl {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    margin-top: 0.2rem;
+  }
+
+  nav.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0 0 2rem;
+    padding: 0;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  nav.tabs button {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--ink-soft);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 0.98rem;
+    padding: 0.85rem 1.1rem;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: color 120ms, border-color 120ms, background 120ms;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-bottom: -1px;
+  }
+  nav.tabs button:hover {
+    color: var(--ink);
+    background: rgba(0,0,0,0.03);
+  }
+  nav.tabs button.active {
+    color: var(--ink);
+    border-bottom-color: var(--marinade);
+  }
+  nav.tabs .tab-count {
+    font-size: 0.75rem;
+    background: var(--line);
+    color: var(--ink-soft);
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+  }
+  nav.tabs button.active .tab-count {
+    background: var(--marinade-soft);
+    color: var(--marinade);
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  section.card {
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    padding: 1.5rem 1.5rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  section.card > h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  section.card > .card-intro {
+    margin: 0 0 1.25rem;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+
+  .user-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  }
+  .tester {
+    border: 1px solid var(--line-strong);
+    border-radius: 14px;
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .tester-head {
+    padding: 1rem 1.1rem;
+    background: var(--neutral);
+    border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 0.5rem;
+  }
+  .tester-head .name {
+    font-weight: 700;
+    font-size: 1.08rem;
+    color: var(--ink);
+  }
+  .tester-head .when {
+    font-size: 0.8rem;
+    color: var(--ink-mute);
+    margin-top: 0.15rem;
+  }
+  .sent-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .sent-enthusiastic { background: var(--happy-soft); color: #8a6300; }
+  .sent-positive     { background: var(--aqua-soft); color: var(--vert); }
+  .sent-mixed        { background: var(--marinade-soft); color: var(--marinade); }
+  .sent-skeptical    { background: var(--heart-soft); color: #9c2a0f; }
+
+  .tester-body { padding: 1rem 1.25rem 1.25rem; }
+
+  .gist {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    border-left: 3px solid var(--aqua);
+    padding-left: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  .q-block { margin-top: 1.25rem; }
+  .q-block h4 {
+    margin: 0 0 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .q-block .answer {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .verdict {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    vertical-align: 2px;
+  }
+  .verdict-yes { background: var(--aqua-soft); color: var(--vert); }
+  .verdict-no { background: var(--heart-soft); color: #9c2a0f; }
+  .verdict-mixed { background: var(--happy-soft); color: #8a6300; }
+
+  .answer ul {
+    margin: 0.5rem 0 0 1.1rem;
+    padding: 0;
+    color: var(--ink-soft);
+  }
+  .answer li { margin: 0.25rem 0; }
+  blockquote.q {
+    margin: 0.6rem 0 0;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--marinade);
+    background: #fbf6e8;
+    color: var(--ink);
+    font-size: 0.93rem;
+    border-radius: 0 6px 6px 0;
+  }
+
+  .bug {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 1.1rem 1.2rem;
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    align-items: start;
+  }
+  .bug-main .top {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.3rem;
+    flex-wrap: wrap;
+  }
+  .bug-main h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .sev {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.12rem 0.55rem;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+  .sev-minor  { background: var(--happy-soft); color: #8a6300; }
+  .sev-medium { background: var(--marinade-soft); color: var(--marinade); }
+  .sev-blocker { background: var(--heart-soft); color: #9c2a0f; }
+  .bug-main p {
+    margin: 0.3rem 0 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .repro {
+    margin-top: 0.65rem;
+    font-size: 0.9rem;
+    background: var(--neutral);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    color: var(--ink);
+  }
+  .repro strong { color: var(--vert); }
+  .area {
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: var(--aqua-soft);
+    color: var(--vert);
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    height: fit-content;
+  }
+  .reporter {
+    font-size: 0.78rem;
+    color: var(--ink-mute);
+    margin-right: 0.3rem;
+  }
+
+  .feature {
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--paper);
+    margin-bottom: 0.6rem;
+    overflow: hidden;
+  }
+  .feature-head {
+    padding: 1rem 1.2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    user-select: none;
+    background: var(--paper);
+    transition: background 120ms;
+  }
+  .feature-head:hover { background: var(--neutral); }
+  .feature.open .feature-head { background: var(--neutral); border-bottom: 1px solid var(--line); }
+  .feature-head h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .feature-counts {
+    display: flex; gap: 0.35rem; align-items: center;
+  }
+  .ftag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+  }
+  .ftag-pos { background: var(--aqua-soft); color: var(--vert); }
+  .ftag-neg { background: var(--heart-soft); color: #9c2a0f; }
+  .ftag-sug { background: var(--happy-soft); color: #8a6300; }
+  .toggle {
+    font-size: 1rem;
+    color: var(--ink-mute);
+    margin-left: 0.25rem;
+    transition: transform 150ms;
+    width: 1.25em;
+    text-align: center;
+  }
+  .feature.open .toggle { transform: rotate(45deg); }
+
+  .feature-body {
+    display: none;
+    padding: 1.1rem 1.2rem;
+  }
+  .feature.open .feature-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 820px) {
+    .feature.open .feature-body { grid-template-columns: 1fr; }
+  }
+  .f-col h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+  .f-col.pos h4 { color: var(--vert); }
+  .f-col.neg h4 { color: #9c2a0f; }
+  .f-col.sug h4 { color: var(--marinade); }
+  .f-col ul { margin: 0; padding: 0; list-style: none; }
+  .f-col li {
+    font-size: 0.92rem;
+    padding: 0.45rem 0;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+  .f-col li:first-child { border-top: none; padding-top: 0; }
+  .f-col li .who {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 0.72rem;
+    background: var(--neutral);
+    padding: 0.1rem 0.5rem;
+    border-radius: 4px;
+    margin-right: 0.4rem;
+  }
+  .empty {
+    font-size: 0.88rem;
+    color: var(--ink-mute);
+    font-style: italic;
+  }
+
+  .sent-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+  .sent-card {
+    background: var(--neutral);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+  }
+  .sent-card .nm {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 1rem;
+  }
+  .sent-card .g {
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin: 0.3rem 0 0.5rem;
+  }
+
+  .theme {
+    padding: 1rem 1.1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .theme:last-child { border-bottom: none; margin-bottom: 0; }
+  .theme-num {
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--marinade);
+    background: var(--marinade-soft);
+    width: 2.2rem; height: 2.2rem;
+    border-radius: 8px;
+    display: grid; place-items: center;
+  }
+  .theme h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .theme p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+
+  .insight-big {
+    border: 1px solid var(--line-strong);
+    background: var(--paper);
+    border-left: 5px solid var(--marinade);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 0.85rem;
+  }
+  .insight-big .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--marinade);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .insight-big h3 {
+    margin: 0.25rem 0 0.6rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .insight-big p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+  }
+
+  .quote-grid {
+    display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .quote {
+    background: #fbf6e8;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+  }
+  .quote blockquote {
+    margin: 0 0 0.5rem;
+    font-size: 0.98rem;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .quote cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--marinade);
+  }
+
+  footer.site {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line-strong);
+    font-size: 0.82rem;
+    color: var(--ink-mute);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; }
+    .kpi-row { justify-content: flex-start; }
+    .bug { grid-template-columns: 1fr; }
+    .area { justify-self: start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="sample-banner">
+    <strong>Sample / Template view</strong> · All names, feedback and quotes are placeholder lorem-ipsum content. Real dashboard is delivered populated with your testers' actual responses.
+  </div>
+
+  <header class="site">
+    <div class="brand">
+      <div class="brand-logo" aria-hidden="true">
+        <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="m7 5l19-0.01c1 0.07 1.6 0.77 1.6 1.75v14c-0.06 0.84-0.65 1.55-1.5 1.63h-19c-0.8-0.07-1.4-0.64-1.5-1.46v-14.5c0.1-0.73 0.66-1.32 1.4-1.44z" fill="#FFD546" stroke="#1a304e" stroke-width="1.2"/>
+          <circle cx="13" cy="12" r="1.4" fill="#1a304e"/>
+          <circle cx="21" cy="12" r="1.4" fill="#1a304e"/>
+          <path d="M11.3 15.4c0.3-0.3 0.8-0.1 1 0.2 0.3 0.3 0.5 0.7 0.9 1 2.2 1.9 5.6 1.7 7.5-0.4 0.3-0.3 0.6-1 1.2-0.9 0.7 0.1 0.5 0.8 0.2 1.2-2 3.2-7.1 3.5-9.8 1.1-0.4-0.4-1.5-1.6-0.9-2.2z" fill="#1a304e"/>
+          <rect x="5" y="27" width="23" height="3" rx="1" fill="#1a304e"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">[Your Brand]</div>
+        <div class="brand-sub">Alpha Feedback Dashboard — Template Demo</div>
+      </div>
+    </div>
+    <div class="pill"><span class="dot"></span> 4 testers · Alpha round · [Date]</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Alpha feedback, <span class="mark">sorted &amp; ready</span> for review.</h1>
+      <p class="lede">A shared workspace where your team can dig into what testers told you — by user, by bug, by feature, and the standout signals worth acting on. Populated with your data, it looks like this.</p>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="num">4</div><div class="lbl">Testers</div></div>
+      <div class="kpi"><div class="num">20</div><div class="lbl">Q&amp;A responses</div></div>
+      <div class="kpi"><div class="num">8</div><div class="lbl">Bugs</div></div>
+      <div class="kpi"><div class="num">13</div><div class="lbl">Features</div></div>
+    </div>
+  </section>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="users">By user <span class="tab-count">4</span></button>
+    <button class="tab-btn" data-tab="bugs">Bugs <span class="tab-count">8</span></button>
+    <button class="tab-btn" data-tab="features">By feature <span class="tab-count">13</span></button>
+    <button class="tab-btn" data-tab="insights">Synthesis &amp; insights</button>
+  </nav>
+
+  <!-- ===== USERS ===== -->
+  <div class="panel active" id="panel-users">
+    <section class="card">
+      <h2>Feedback by tester</h2>
+      <p class="card-intro">Each tester's responses across the five alpha questions, with a one-line snapshot and sentiment at the top.</p>
+      <div class="user-grid" id="user-grid"></div>
+    </section>
+  </div>
+
+  <!-- ===== BUGS ===== -->
+  <div class="panel" id="panel-bugs">
+    <section class="card">
+      <h2>Bugs &amp; issues</h2>
+      <p class="card-intro">Every bug reported during the alpha, tagged by severity, surface area, and reporter.</p>
+      <div id="bug-list"></div>
+    </section>
+  </div>
+
+  <!-- ===== FEATURES ===== -->
+  <div class="panel" id="panel-features">
+    <section class="card">
+      <h2>Feedback by feature</h2>
+      <p class="card-intro">Click any feature to open a three-column split: what testers liked, their concerns, and their suggestions.</p>
+      <div id="feature-list"></div>
+    </section>
+  </div>
+
+  <!-- ===== INSIGHTS ===== -->
+  <div class="panel" id="panel-insights">
+    <section class="card">
+      <h2>Overall sentiment</h2>
+      <div class="sent-row" id="sentiment-row"></div>
+      <p style="margin:1rem 0 0; color: var(--ink-soft);">
+        A plain-English read of how each tester felt, pulled up to the top so the team has shared context before diving into details.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Key themes</h2>
+      <div id="theme-list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Standout insights</h2>
+      <div id="insight-list"></div>
+    </section>
+
+    <section class="card">
+      <h2>Testimonials</h2>
+      <div class="quote-grid" id="quote-grid"></div>
+    </section>
+  </div>
+
+  <footer class="site">
+    <div>© [Year] [Your Brand] · Alpha Feedback Dashboard</div>
+    <div>Template demo · Content is placeholder lorem ipsum</div>
+  </footer>
+</div>
+
+<script>
+/* ============ PLACEHOLDER DATA ============ */
+
+const LOREM_SHORT  = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+const LOREM_MEDIUM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+const LOREM_LONG   = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+const TESTERS = [
+  {
+    id: "t1",
+    name: "Tester 01",
+    when: "Responded [Date]",
+    sentiment: "skeptical",
+    sentimentLabel: "Skeptical · Generous",
+    gist: "Wouldn't use it in current workflow yet, but gave the most detailed feedback of the group.",
+    q1: { verdict: "none", text: "Did not report any bugs." },
+    q2: {
+      verdict: "no",
+      text: "Not yet — needs more examples of real-world value before adopting.",
+      quotes: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. I'd need more examples, a getting-started section, tips on what works, and perhaps a short walkthrough video."]
+    },
+    q3: {
+      verdict: "no",
+      text: "Output feels too long and trust is a barrier.",
+      quotes: ["Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. To build trust I'd need to know how the tool is reaching its conclusions, with links back to source material."]
+    },
+    q4: {
+      verdict: "mixed",
+      text: "Sort of. Wants a two-step flow and source attribution.",
+      quotes: ["Ut enim ad minim veniam, quis nostrud exercitation. A two-step process might help: first surface the major themes, then let me pick which one to go deeper on."]
+    },
+    q5: {
+      text: "More control over organization, less reliance on auto-generated output.",
+      bullets: [
+        "Placeholder request — lorem ipsum dolor sit amet.",
+        "Placeholder request — duis aute irure dolor.",
+        "Placeholder request — excepteur sint occaecat.",
+        "Placeholder request — sunt in culpa qui officia.",
+        "Placeholder request — nemo enim ipsam voluptatem.",
+        "Core job-to-be-done: make artifacts findable months from now."
+      ],
+      quotes: ["I hope this isn't discouraging — keep going!"]
+    }
+  },
+  {
+    id: "t2",
+    name: "Tester 02",
+    when: "Responded [Date]",
+    sentiment: "mixed",
+    sentimentLabel: "Mixed · Thoughtful",
+    gist: "Loves the core capture and organization. Wants the human to stay in the synthesis seat.",
+    q1: {
+      verdict: "some",
+      text: "A handful of bugs — none blocked testing.",
+      bullets: [
+        "Placeholder bug — lorem ipsum dolor sit amet.",
+        "Placeholder bug — consectetur adipiscing elit.",
+        "Placeholder bug — sed do eiusmod tempor.",
+        "Placeholder bug — ut labore et dolore magna."
+      ]
+    },
+    q2: {
+      verdict: "mixed",
+      text: "Implied yes, with a caveat about AI ownership of the thinking.",
+      quotes: [
+        "I enjoy the synthesis phase; that's my superpower. But it's hard to do that when the tool does all of it for me. I want help with this step — I don't want it replaced.",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      ]
+    },
+    q3: {
+      verdict: "mixed",
+      text: "Likes the headline. Output is too dense and text-heavy to scan.",
+      quotes: ["Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. I want this surface to 1) jog my memory and 2) surface a couple of quick patterns — not make me read three paragraphs."],
+      bullets: [
+        "Placeholder ask — lorem ipsum dolor sit amet.",
+        "Placeholder ask — ut enim ad minim veniam.",
+        "Placeholder ask — quis nostrud exercitation.",
+        "Placeholder ask — excepteur sint occaecat.",
+        "Placeholder ask — sunt in culpa qui officia."
+      ]
+    },
+    q4: {
+      verdict: "mixed",
+      text: "Got overwhelmed — mental energy required to verify.",
+      quotes: ["Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. I had to expend a lot of mental energy processing what it was saying and deciding whether I agreed."],
+      bullets: [
+        "Bullets instead of sentences.",
+        "Starter prompts to guide my own synthesis.",
+        "Eventually, search across my notes.",
+        "Ability to edit the output in-place."
+      ]
+    },
+    q5: {
+      text: "Small feature requests across capture, tagging, and search.",
+      bullets: [
+        "Lorem ipsum — in-context creation action.",
+        "Lorem ipsum — add annotations at capture time.",
+        "Lorem ipsum — lightweight dismissal interaction.",
+        "Lorem ipsum — surface secondary content on the item page.",
+        "Lorem ipsum — prime the tagging system upfront.",
+        "Lorem ipsum — user-added keywords.",
+        "Lorem ipsum — more factual tags.",
+        "Lorem ipsum — search would improve if output were more factual."
+      ]
+    }
+  },
+  {
+    id: "t3",
+    name: "Tester 03",
+    when: "Responded [Date]",
+    sentiment: "enthusiastic",
+    sentimentLabel: "Enthusiastic · Champion",
+    gist: "Most enthusiastic of the group. Would have used the tool on a live project.",
+    q1: {
+      verdict: "none",
+      text: "Nothing specific — saw one environment-level error that may not be tool-related."
+    },
+    q2: {
+      verdict: "yes",
+      text: "Yes. Would have used it on a recent project instead of an existing tool.",
+      quotes: ["Lorem ipsum dolor sit amet. I would have loved to have had this for the last project I ran — it would have replaced the tool I ended up using."]
+    },
+    q3: {
+      verdict: "yes",
+      text: "Yes — gave a fresh perspective on their own content.",
+      quotes: ["Ut enim ad minim veniam. Reading these summaries gave me a different POV on content I thought I already understood."]
+    },
+    q4: {
+      verdict: "yes",
+      text: "This is the headline feature — nailed it deeper than expected.",
+      quotes: ["THIS is the gold. The insight really nailed it deeper than I thought. I love the 'Why This Matters' framing because it tapped into the moment-right-now context."]
+    },
+    q5: {
+      text: "Wants overview surfaces — a broad map and a keyword rollup.",
+      bullets: [
+        "An overview of tags pulling through at large.",
+        "A map of connections across all saved items."
+      ],
+      quotes: ["This is so exciting and I cannot wait to use it for some of my upcoming projects!"]
+    }
+  },
+  {
+    id: "t4",
+    name: "Tester 04",
+    when: "Responded [Date]",
+    sentiment: "positive",
+    sentimentLabel: "Positive · Platform-blocked",
+    gist: "Clear yes — but a missing platform is a workflow blocker for her day-to-day.",
+    q1: {
+      verdict: "some",
+      text: "A few capture errors on one content source.",
+      bullets: [
+        "Placeholder bug — lorem ipsum dolor sit amet.",
+        "Placeholder bug — consectetur adipiscing elit.",
+        "Placeholder bug — sed do eiusmod tempor."
+      ]
+    },
+    q2: {
+      verdict: "yes",
+      text: "Definite use case — but one platform gap is a blocker.",
+      quotes: [
+        "Lorem ipsum dolor sit amet. Is there a way to use this from mobile? I typically save content on my phone.",
+        "Duis aute irure dolor. I definitely see a use case here — curious whether I'd see similarities across the content I've saved.",
+        "Excepteur sint occaecat. It'd be very interesting to see what other people are finding and how that correlates to what I'm saving."
+      ]
+    },
+    q3: {
+      verdict: "mixed",
+      text: "Helpful but too hefty. Existing source content is easier to digest.",
+      quotes: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. It is helpful but feels overwhelming to read — three paragraphs of text is more than I can scan. Even three bullet key takeaways would help."]
+    },
+    q4: {
+      verdict: "mixed",
+      text: "Same readability ask — wants bullets, visuals, and source links.",
+      bullets: [
+        "Bullets and/or visuals to illustrate the insight.",
+        "Link to the source items the insight pulls from.",
+        "Phase 2 — pull in supporting external content to strengthen the case."
+      ]
+    },
+    q5: {
+      text: "Two concrete asks around capture and selection UX.",
+      bullets: [
+        "Create organizational structures at the moment of capture.",
+        "Select-all and exclude-by-checkbox in multi-item flows."
+      ]
+    }
+  }
+];
+
+const BUGS = [
+  {
+    title: "Placeholder bug — sync delay in browser surface",
+    reporter: "Tester 02",
+    severity: "minor",
+    area: "Surface A",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. A newly created object is not visible in a secondary surface until the page is reloaded.",
+    repro: "Create new object in primary surface → navigate to secondary surface → open tool → click relevant tab → object not visible → reload → object appears."
+  },
+  {
+    title: "Placeholder bug — field contamination on capture",
+    reporter: "Tester 02",
+    severity: "minor",
+    area: "Capture",
+    description: "Sed do eiusmod tempor incididunt. When capturing an item, an unrelated string shows up inside the notes field."
+  },
+  {
+    title: "Placeholder bug — post-action CTA label is confusing",
+    reporter: "Tester 02",
+    severity: "minor",
+    area: "Surface A",
+    description: "Ut enim ad minim veniam. The CTA after a successful action re-opens the action surface. The label should be clearer about what happens next."
+  },
+  {
+    title: "Placeholder bug — generation action returns error",
+    reporter: "Tester 02",
+    severity: "medium",
+    area: "Generation",
+    description: "Duis aute irure dolor. Selecting items → clicking generate → returns an error."
+  },
+  {
+    title: "Placeholder bug — repeated capture errors on source X",
+    reporter: "Tester 04",
+    severity: "medium",
+    area: "Capture",
+    description: "Excepteur sint occaecat cupidatat non proident. Multiple attempts to capture content from source X returned errors."
+  },
+  {
+    title: "Placeholder bug — captures fail from a specific entry point",
+    reporter: "Tester 04",
+    severity: "medium",
+    area: "Capture",
+    description: "Sunt in culpa qui officia. Captures fail when initiated from a specific entry point. Direct URL path works."
+  },
+  {
+    title: "Placeholder bug — content type misclassified",
+    reporter: "Tester 04",
+    severity: "minor",
+    area: "Classification",
+    description: "Nemo enim ipsam voluptatem. A single-item post was misclassified as a multi-item post."
+  },
+  {
+    title: "Placeholder bug — environment-level crash during selection",
+    reporter: "Tester 03",
+    severity: "minor",
+    area: "Unknown",
+    description: "Neque porro quisquam est. An environment-level error appeared while selecting items. Unclear if caused by the tool or by the environment."
+  }
+];
+
+const FEATURES = [
+  {
+    name: "Feature 01 — Core summary output",
+    positive: [
+      { who: "Tester 02", txt: "Lorem ipsum dolor sit amet. Likes the headline and the framing up top." },
+      { who: "Tester 03", txt: "Consectetur adipiscing elit. Gave a fresh POV on own content." },
+      { who: "Tester 04", txt: "Sed do eiusmod. Helpful overall." }
+    ],
+    negative: [
+      { who: "Tester 01", txt: "Ut labore et dolore magna. Too long — would almost rather read the source." },
+      { who: "Tester 02", txt: "Aliqua ut enim ad minim. Really text-heavy; slow to process." },
+      { who: "Tester 04", txt: "Veniam quis nostrud. Overwhelming to read — existing source content is easier to scan." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Exercitation ullamco laboris. Add source links on key phrases to build trust." },
+      { who: "Tester 02", txt: "Nisi ut aliquip ex ea. Pull a preview image to jog memory." },
+      { who: "Tester 02", txt: "Commodo consequat. Make the output more literal — label, not interpretation." },
+      { who: "Tester 04", txt: "Duis aute irure. Offer a succinct 3-bullet view." }
+    ]
+  },
+  {
+    name: "Feature 02 — Cross-item synthesis",
+    positive: [
+      { who: "Tester 03", txt: "Lorem ipsum — \"THIS is the gold.\" The cross-item synthesis landed deeper than expected." },
+      { who: "Tester 02", txt: "Dolor sit amet. Liked being able to edit the title and body in-place." }
+    ],
+    negative: [
+      { who: "Tester 01", txt: "Consectetur adipiscing. Not sure the takeaway is trustworthy." },
+      { who: "Tester 02", txt: "Sed do eiusmod. Output was so robust she had to expend a lot of energy verifying it." },
+      { who: "Tester 04", txt: "Tempor incididunt. Same readability ask — too heavy to read." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Ut labore et dolore. Two-step flow: surface themes first, then pick one to go deeper on." },
+      { who: "Tester 02", txt: "Magna aliqua. Bullets over sentences. Starter prompts in a notes pane." },
+      { who: "Tester 04", txt: "Ut enim ad minim. Bullets and/or visuals, plus links to source items." }
+    ]
+  },
+  {
+    name: "Feature 03 — Auto-categorization / tags",
+    positive: [
+      { who: "Tester 02", txt: "Lorem ipsum — loves that tagging is automatic. \"Tags are so hard!\"" }
+    ],
+    negative: [
+      { who: "Tester 02", txt: "Dolor sit amet. Not the highest priority, but tags could be more factual." },
+      { who: "Tester 01", txt: "Consectetur adipiscing. Wants to add his own genre/theme tags." }
+    ],
+    suggestions: [
+      { who: "Tester 02", txt: "Sed do eiusmod. Let users prime the system with tracked topics upfront." },
+      { who: "Tester 03", txt: "Tempor incididunt. An overview of tags pulling through at large." }
+    ]
+  },
+  {
+    name: "Feature 04 — Organization / grouping",
+    positive: [
+      { who: "Tester 02", txt: "Lorem ipsum — being able to store and group saves is \"AWESOME.\"" }
+    ],
+    negative: [
+      { who: "Tester 02", txt: "Sed do eiusmod. Sync delay between surfaces after creation (see Bugs)." }
+    ],
+    suggestions: [
+      { who: "Tester 02", txt: "Ut labore et dolore. Create organizational structures in context, not just on the main surface." },
+      { who: "Tester 04", txt: "Magna aliqua. Create organization at the moment of capture." }
+    ]
+  },
+  {
+    name: "Feature 05 — Browser extension / surface A",
+    positive: [
+      { who: "Tester 02", txt: "Lorem ipsum — generally worked as expected. Easy setup, easy to capture." }
+    ],
+    negative: [
+      { who: "Tester 02", txt: "Dolor sit amet. Sync issue (needs reload). Post-action CTA label is confusing." }
+    ],
+    suggestions: [
+      { who: "Tester 02", txt: "Consectetur adipiscing. Add in-context annotations. Allow dismissal via click-outside." },
+      { who: "Tester 04", txt: "Sed do eiusmod. Enable in-context structure creation." }
+    ]
+  },
+  {
+    name: "Feature 06 — Mobile / second platform",
+    positive: [],
+    negative: [
+      { who: "Tester 04", txt: "Lorem ipsum — workflow blocker. Captures happen on mobile for this tester." }
+    ],
+    suggestions: [
+      { who: "Tester 04", txt: "Dolor sit amet. Enable mobile capture or a mobile bridge." }
+    ]
+  },
+  {
+    name: "Feature 07 — Source X / source Y captures",
+    positive: [
+      { who: "Tester 02", txt: "Lorem ipsum — generally worked across sources." },
+      { who: "Tester 03", txt: "Dolor sit amet. Captured from own content library successfully." }
+    ],
+    negative: [
+      { who: "Tester 02", txt: "Consectetur adipiscing. Field contamination on capture (see Bugs)." },
+      { who: "Tester 04", txt: "Sed do eiusmod. Repeated capture errors on source X; one entry point fails while direct URL works. One item misclassified." }
+    ],
+    suggestions: [
+      { who: "Tester 02", txt: "Ut labore et dolore. Surface secondary signals (e.g. top comments) on the item page." }
+    ]
+  },
+  {
+    name: "Feature 08 — User annotations",
+    positive: [],
+    negative: [
+      { who: "Tester 01", txt: "Lorem ipsum — cannot add quick notes at capture time to capture intent." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Dolor sit amet. Inline annotation at the moment of capture." },
+      { who: "Tester 02", txt: "Consectetur adipiscing. Annotate directly from the capture surface." }
+    ]
+  },
+  {
+    name: "Feature 09 — Preview images / thumbnails",
+    positive: [],
+    negative: [
+      { who: "Tester 01", txt: "Lorem ipsum — current thumbnails don't reflect saved content." },
+      { who: "Tester 02", txt: "Dolor sit amet. Without a preview image, the summary is doing all the memory work." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Consectetur adipiscing. Thumbnail should be the hero image from the item." },
+      { who: "Tester 02", txt: "Sed do eiusmod. Pull a preview image like a messaging-app link unfurl." }
+    ]
+  },
+  {
+    name: "Feature 10 — Alt content types (images/infographics)",
+    positive: [],
+    negative: [
+      { who: "Tester 01", txt: "Lorem ipsum — unclear how to save non-article content types." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Dolor sit amet. Support image/visual saves directly, with the image as the thumbnail." }
+    ]
+  },
+  {
+    name: "Feature 11 — Search",
+    positive: [
+      { who: "Tester 02", txt: "Lorem ipsum — some search terms worked." }
+    ],
+    negative: [
+      { who: "Tester 01", txt: "Dolor sit amet. Core need: find a specific item months later with hundreds of saves." },
+      { who: "Tester 02", txt: "Consectetur adipiscing. Some search terms didn't return expected results." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Sed do eiusmod. More tools around organization — make items findable later. This is the differentiator." },
+      { who: "Tester 02", txt: "Tempor incididunt. More factual output would also improve search." }
+    ]
+  },
+  {
+    name: "Feature 12 — Cross-item visualization",
+    positive: [],
+    negative: [],
+    suggestions: [
+      { who: "Tester 03", txt: "Lorem ipsum — a map of connections across saved items." },
+      { who: "Tester 03", txt: "Dolor sit amet. A rollup view of tags pulling through at large." }
+    ]
+  },
+  {
+    name: "Feature 13 — Onboarding & social",
+    positive: [],
+    negative: [
+      { who: "Tester 01", txt: "Lorem ipsum — needs more examples before adopting into workflow." }
+    ],
+    suggestions: [
+      { who: "Tester 01", txt: "Dolor sit amet. A Getting Started section plus a worked example comparing manual vs. tool-assisted." },
+      { who: "Tester 04", txt: "Consectetur adipiscing. Curious about what other users are finding and how it correlates." }
+    ]
+  }
+];
+
+const THEMES = [
+  { n: "1", title: "Placeholder theme — density vs. scannability", body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Multiple testers independently said the core output feels too heavy and text-dense. They want bullets over paragraphs, a visual to jog memory, and more literal descriptions of what's inside — instead of interpretive prose." },
+  { n: "2", title: "Placeholder theme — humans want to own the synthesis", body: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. The strongest philosophical signal — testers want the tool to scaffold their thinking, not replace it. They asked for a two-step flow where the tool surfaces options and the human picks the direction, with source attribution visible throughout." },
+  { n: "3", title: "Placeholder theme — organization is the hidden differentiator", body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco. Testers want more control: user-added tags, annotations at capture time, in-context organizational actions, and thumbnails that reflect the content. If the tool can't help me find this thing again months from now, it's competing with a folder + generic AI — and losing." },
+  { n: "4", title: "Placeholder theme — platform gaps slow adoption", body: "Duis aute irure dolor in reprehenderit in voluptate. A missing platform (mobile in this case) and missing in-context actions in a secondary surface slowed adoption. Capture has to match where testers already live." },
+  { n: "5", title: "Placeholder theme — bugs are minor and clustered", body: "Excepteur sint occaecat cupidatat non proident. No blockers. Reported issues cluster around a specific content source, a secondary surface, and one generation error. All solvable." }
+];
+
+const INSIGHTS = [
+  {
+    eyebrow: "Insight 01",
+    title: "The output should be a label, not a take.",
+    body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Three of four testers wanted the same thing: shorter, bulleted, and more literal. Restructuring this one surface is the single clearest product improvement in the alpha."
+  },
+  {
+    eyebrow: "Insight 02",
+    title: "Synthesis landed when the tool showed its work — and failed when it didn't.",
+    body: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. The testers who trusted the output were the ones who could see its sources. A two-step flow (themes first, deep-dive second) with source attribution on every claim turns the same feature into something every tester could trust."
+  },
+  {
+    eyebrow: "Insight 03",
+    title: "Organization is the hidden differentiator.",
+    body: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The testers who pushed back hardest weren't pushing back on AI — they were pushing back on AI at the expense of organization. User-added tags, notes at capture time, visual thumbnails and better search are the features that make this feel like a personal archive rather than a generic AI tool."
+  }
+];
+
+const TESTIMONIALS = [
+  { quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. THIS is the gold. The synthesis really nailed it deeper than I thought.", cite: "Tester 03 — on the cross-item synthesis feature" },
+  { quote: "Sed do eiusmod tempor incididunt. Being able to store and group things is AWESOME.", cite: "Tester 02" },
+  { quote: "Ut enim ad minim veniam. This is so exciting and I cannot wait to use it for my upcoming projects.", cite: "Tester 03" },
+  { quote: "Duis aute irure dolor. I definitely see a use case here — I'm curious whether I'd see similarities across the content I've saved.", cite: "Tester 04" },
+  { quote: "Excepteur sint occaecat. I hope this isn't discouraging — keep going!", cite: "Tester 01" }
+];
+
+/* ============ RENDER ============ */
+
+const Q_TITLES = {
+  q1: "Q1. Are there any bugs?",
+  q2: "Q2. Would you use this in your current workflow?",
+  q3: "Q3. Is the core output useful?",
+  q4: "Q4. Is the cross-item synthesis useful?",
+  q5: "Q5. What slight tweak would be a game-changer?"
+};
+
+function verdictTag(v) {
+  if (!v || v === "none") return "";
+  const map = { yes: "verdict-yes", no: "verdict-no", mixed: "verdict-mixed", some: "verdict-mixed" };
+  const label = { yes: "Yes", no: "No", mixed: "Mixed", some: "Some" }[v] || v;
+  return `<span class="verdict ${map[v] || "verdict-mixed"}">${label}</span>`;
+}
+
+function renderAnswer(ans) {
+  if (!ans) return `<div class="answer"><span class="empty">No response.</span></div>`;
+  const verdict = verdictTag(ans.verdict);
+  const text = ans.text ? `${verdict}${ans.text}` : verdict;
+  const bullets = (ans.bullets && ans.bullets.length)
+    ? `<ul>${ans.bullets.map(b => `<li>${b}</li>`).join("")}</ul>` : "";
+  const quotes = (ans.quotes && ans.quotes.length)
+    ? ans.quotes.map(q => `<blockquote class="q">"${q}"</blockquote>`).join("") : "";
+  return `<div class="answer">${text}${bullets}${quotes}</div>`;
+}
+
+function renderUsers() {
+  const el = document.getElementById("user-grid");
+  el.innerHTML = TESTERS.map(t => `
+    <article class="tester">
+      <div class="tester-head">
+        <div>
+          <div class="name">${t.name}</div>
+          <div class="when">${t.when}</div>
+        </div>
+        <div class="sent-badge sent-${t.sentiment}">${t.sentimentLabel}</div>
+      </div>
+      <div class="tester-body">
+        <div class="gist">${t.gist}</div>
+        ${["q1","q2","q3","q4","q5"].map(k => `
+          <div class="q-block">
+            <h4>${Q_TITLES[k]}</h4>
+            ${renderAnswer(t[k])}
+          </div>
+        `).join("")}
+      </div>
+    </article>
+  `).join("");
+}
+
+function renderBugs() {
+  const el = document.getElementById("bug-list");
+  el.innerHTML = BUGS.map(b => `
+    <div class="bug">
+      <div class="bug-main">
+        <div class="top">
+          <h3>${b.title}</h3>
+          <span class="sev sev-${b.severity}">${b.severity}</span>
+        </div>
+        <div><span class="reporter">Reported by ${b.reporter}</span></div>
+        <p>${b.description}</p>
+        ${b.repro ? `<div class="repro"><strong>Repro:</strong> ${b.repro}</div>` : ""}
+      </div>
+      <div class="area">${b.area}</div>
+    </div>
+  `).join("");
+}
+
+function renderFeatures() {
+  const el = document.getElementById("feature-list");
+  el.innerHTML = FEATURES.map((f, i) => {
+    const p = f.positive.length, n = f.negative.length, s = f.suggestions.length;
+    const renderCol = (items, kind, label) => `
+      <div class="f-col ${kind}">
+        <h4>${label} · ${items.length}</h4>
+        ${items.length ? `<ul>${items.map(x => `<li><span class="who">${x.who}</span>${x.txt}</li>`).join("")}</ul>` : `<div class="empty">No notes</div>`}
+      </div>`;
+    return `
+      <div class="feature" data-idx="${i}">
+        <div class="feature-head" onclick="toggleFeature(${i})">
+          <h3>${f.name}</h3>
+          <div class="feature-counts">
+            <span class="ftag ftag-pos">+${p} liked</span>
+            <span class="ftag ftag-neg">−${n} concerns</span>
+            <span class="ftag ftag-sug">${s} ideas</span>
+            <span class="toggle">+</span>
+          </div>
+        </div>
+        <div class="feature-body">
+          ${renderCol(f.positive, "pos", "Liked")}
+          ${renderCol(f.negative, "neg", "Concerns")}
+          ${renderCol(f.suggestions, "sug", "Suggestions")}
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function toggleFeature(i) {
+  const el = document.querySelector(`.feature[data-idx="${i}"]`);
+  el.classList.toggle("open");
+}
+
+function renderInsights() {
+  document.getElementById("sentiment-row").innerHTML = TESTERS.map(t => `
+    <div class="sent-card">
+      <div class="nm">${t.name}</div>
+      <div class="g">${t.gist}</div>
+      <div><span class="sent-badge sent-${t.sentiment}">${t.sentimentLabel}</span></div>
+    </div>
+  `).join("");
+
+  document.getElementById("theme-list").innerHTML = THEMES.map(t => `
+    <div class="theme">
+      <div class="theme-num">${t.n}</div>
+      <div>
+        <h3>${t.title}</h3>
+        <p>${t.body}</p>
+      </div>
+    </div>
+  `).join("");
+
+  document.getElementById("insight-list").innerHTML = INSIGHTS.map(i => `
+    <div class="insight-big">
+      <div class="eyebrow">${i.eyebrow}</div>
+      <h3>${i.title}</h3>
+      <p>${i.body}</p>
+    </div>
+  `).join("");
+
+  document.getElementById("quote-grid").innerHTML = TESTIMONIALS.map(t => `
+    <div class="quote">
+      <blockquote>"${t.quote}"</blockquote>
+      <cite>— ${t.cite}</cite>
+    </div>
+  `).join("");
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+});
+
+renderUsers();
+renderBugs();
+renderFeatures();
+renderInsights();
+</script>
+</body>
+</html>
