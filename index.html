@@ -534,6 +534,78 @@
     .hero { grid-template-columns: 1fr; }
     .kpi-row { justify-content: flex-start; }
   }
+
+  /* ===== Pipeline section additions ===== */
+  .notice {
+    background: var(--marinade-soft);
+    border: 1px solid var(--marinade);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+  }
+  .notice h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--marinade);
+  }
+  .notice ul { margin: 0; padding-left: 1.15rem; color: var(--ink); }
+  .notice ul li { margin: 0.35rem 0; font-size: 0.95rem; }
+  .notice ul li strong { color: var(--ink); font-weight: 700; }
+
+  .moments-grid {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .moment {
+    background: var(--neutral);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--marinade);
+    border-radius: 10px;
+    padding: 0.95rem 1.1rem;
+  }
+  .moment .m-quote {
+    color: var(--ink);
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.45;
+    margin: 0 0 0.55rem;
+  }
+  .moment .m-by {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--marinade);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  table.submissions {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  table.submissions th {
+    text-align: left;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.55rem 0.65rem;
+    border-bottom: 1px solid var(--line-strong);
+    white-space: nowrap;
+  }
+  table.submissions td {
+    padding: 0.6rem 0.65rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+  table.submissions tr:last-child td { border-bottom: none; }
+  table.submissions td.nm { font-weight: 700; color: var(--ink); }
+  .table-scroll { overflow-x: auto; }
 </style>
 </head>
 <body>
@@ -589,9 +661,10 @@
   </section>
 
   <nav class="anchors" id="anchors">
-    <a href="#archetypes" class="active">Archetypes</a>
-    <a href="#lifecycle">Lifecycle &amp; events</a>
-    <a href="#preview">Dashboard preview</a>
+    <a href="#archetypes" class="active">Power users</a>
+    <a href="#lifecycle">What we track</a>
+    <a href="#preview">Community snapshot</a>
+    <a href="#pipeline">Beta pipeline</a>
     <a href="#questions">Open questions</a>
   </nav>
 
@@ -868,8 +941,199 @@
   </section>
 
   <!-- =============== OPEN QUESTIONS =============== -->
+  <!-- =============== BETA INTEREST PIPELINE =============== -->
+  <section class="block" id="pipeline">
+    <div class="kicker">04 · Beta interest form</div>
+    <h2>Who's signing up.</h2>
+    <p class="intro">7 beta interest form submissions from <strong>digitalculturist.ai/beta</strong> since May 7 — heavy on agency-side cultural strategists, with "digital purgatory" landing hard as a pain point. Snapshot below for the team and founder review.</p>
+
+    <div class="kpi-row" style="justify-content: flex-start; margin-bottom: 1.5rem; gap: 0.6rem;">
+      <div class="kpi"><div class="num">7</div><div class="lbl">Form submissions</div></div>
+      <div class="kpi"><div class="num">86%</div><div class="lbl">Strategy roles</div></div>
+      <div class="kpi"><div class="num">71%</div><div class="lbl">From agencies</div></div>
+      <div class="kpi"><div class="num">43%</div><div class="lbl">Director-level or above</div></div>
+    </div>
+
+    <div class="dash-grid">
+
+      <!-- Role -->
+      <div class="tile col-6">
+        <h3>Day-to-day role</h3>
+        <div class="sub">What people do in their work</div>
+        <div class="barlist">
+          <div class="barrow"><div class="bar-label">Brand/Cultural Strategy</div><div><div class="bar" style="width:100%"></div></div><div class="bar-val">5 <span class="pct">71%</span></div></div>
+          <div class="barrow"><div class="bar-label">Marketing Strategy</div><div><div class="bar" style="width:20%"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+          <div class="barrow"><div class="bar-label">Other</div><div><div class="bar" style="width:20%"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+        </div>
+      </div>
+
+      <!-- Level -->
+      <div class="tile col-6">
+        <h3>Seniority level</h3>
+        <div class="sub">Where they sit in their org</div>
+        <div class="barlist">
+          <div class="barrow"><div class="bar-label">Individual contributor</div><div><div class="bar c2" style="width:100%"></div></div><div class="bar-val">3 <span class="pct">43%</span></div></div>
+          <div class="barrow"><div class="bar-label">VP / Head of</div><div><div class="bar c2" style="width:67%"></div></div><div class="bar-val">2 <span class="pct">29%</span></div></div>
+          <div class="barrow"><div class="bar-label">Director</div><div><div class="bar c2" style="width:33%"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+          <div class="barrow"><div class="bar-label">Freelance / consultant</div><div><div class="bar c2" style="width:33%"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+        </div>
+      </div>
+
+      <!-- Company type -->
+      <div class="tile col-6">
+        <h3>Company type</h3>
+        <div class="sub">Where they're based</div>
+        <div class="barlist">
+          <div class="barrow"><div class="bar-label">Agency</div><div><div class="bar c3" style="width:100%"></div></div><div class="bar-val">5 <span class="pct">71%</span></div></div>
+          <div class="barrow"><div class="bar-label">Brand (in-house)</div><div><div class="bar c3" style="width:20%"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+          <div class="barrow"><div class="bar-label">Freelance / consultant</div><div><div class="bar c3" style="width:20%"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+        </div>
+      </div>
+
+      <!-- Pain point -->
+      <div class="tile col-6">
+        <h3>Biggest digital purgatory pain point</h3>
+        <div class="sub">What's broken in their workflow</div>
+        <div class="barlist">
+          <div class="barrow"><div class="bar-label">All of the above (it's bad)</div><div><div class="bar" style="width:100%; background: var(--heart);"></div></div><div class="bar-val">4 <span class="pct">57%</span></div></div>
+          <div class="barrow"><div class="bar-label">Too much time organizing vs. analyzing</div><div><div class="bar" style="width:50%; background: var(--heart);"></div></div><div class="bar-val">2 <span class="pct">29%</span></div></div>
+          <div class="barrow"><div class="bar-label">Can never find that perfect example</div><div><div class="bar" style="width:25%; background: var(--heart);"></div></div><div class="bar-val">1 <span class="pct">14%</span></div></div>
+        </div>
+      </div>
+
+      <!-- Interest in joining -->
+      <div class="tile col-8">
+        <h3>Why they're interested in joining</h3>
+        <div class="sub">Multi-select — totals may exceed N=7</div>
+        <div class="barlist">
+          <div class="barrow"><div class="bar-label">Get updates &amp; give product feedback</div><div><div class="bar" style="width:100%"></div></div><div class="bar-val">5 <span class="pct">71%</span></div></div>
+          <div class="barrow"><div class="bar-label">Test the product with my team</div><div><div class="bar" style="width:100%"></div></div><div class="bar-val">5 <span class="pct">71%</span></div></div>
+          <div class="barrow"><div class="bar-label">Just here for the beta</div><div><div class="bar c2" style="width:40%"></div></div><div class="bar-val">2 <span class="pct">29%</span></div></div>
+          <div class="barrow"><div class="bar-label">Interested in partnership opportunities</div><div><div class="bar c3" style="width:40%"></div></div><div class="bar-val">2 <span class="pct">29%</span></div></div>
+        </div>
+      </div>
+
+      <!-- What we're noticing -->
+      <div class="tile col-4">
+        <div class="notice">
+          <h4>What we're noticing</h4>
+          <ul>
+            <li><strong>4 of 7</strong> said "all of the above" — strong problem-fit signal.</li>
+            <li><strong>5 of 7</strong> want to test with their team — expansion baked in.</li>
+            <li><strong>4 submissions on May 7</strong> — burst suggests a referral source worth tracking.</li>
+            <li><strong>2 from Horizon Media</strong> — early word-of-mouth pattern.</li>
+            <li><strong>43% senior</strong> (VP / Director) — buying-decision representation in the room.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Cultural moments spotted early -->
+      <div class="tile col-12">
+        <h3>Cultural moments they've spotted early</h3>
+        <div class="sub">4 of 7 shared one — raw responses, attributed by first name</div>
+        <div class="moments-grid">
+          <div class="moment">
+            <p class="m-quote">"Social media platforms would be somewhat harmful."</p>
+            <div class="m-by">Iolanda · Agency</div>
+          </div>
+          <div class="moment">
+            <p class="m-quote">"Cultural obsession with friction."</p>
+            <div class="m-by">Philip · Freelance / consultant</div>
+          </div>
+          <div class="moment">
+            <p class="m-quote">"Mainstreaming of southern culture."</p>
+            <div class="m-by">Courtney · Horizon Media</div>
+          </div>
+          <div class="moment">
+            <p class="m-quote">"Genre's explosive boom into myriad micro-genres spanning old and new, AI and human, etc."</p>
+            <div class="m-by">Alison · Horizon Media</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submission log -->
+      <div class="tile col-12">
+        <h3>Submission log</h3>
+        <div class="sub">Most recent first · first names only · contact details live in HubSpot</div>
+        <div class="table-scroll">
+          <table class="submissions">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Level</th>
+                <th>Company type</th>
+                <th>Pain point</th>
+                <th>Submitted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="nm">Iolanda</td>
+                <td>Other</td>
+                <td>Individual contributor</td>
+                <td>Agency</td>
+                <td>Organizing vs. analyzing</td>
+                <td>May 18</td>
+              </tr>
+              <tr>
+                <td class="nm">Philip</td>
+                <td>Brand/Cultural Strategy</td>
+                <td>Freelance / consultant</td>
+                <td>Freelance / consultant</td>
+                <td>Organizing vs. analyzing</td>
+                <td>May 16</td>
+              </tr>
+              <tr>
+                <td class="nm">Emily</td>
+                <td>Brand/Cultural Strategy</td>
+                <td>Individual contributor</td>
+                <td>Brand (in-house)</td>
+                <td>All of the above</td>
+                <td>May 14</td>
+              </tr>
+              <tr>
+                <td class="nm">James</td>
+                <td>Marketing Strategy</td>
+                <td>Individual contributor</td>
+                <td>Agency</td>
+                <td>All of the above</td>
+                <td>May 7</td>
+              </tr>
+              <tr>
+                <td class="nm">Courtney</td>
+                <td>Brand/Cultural Strategy</td>
+                <td>VP / Head of</td>
+                <td>Agency (Horizon Media)</td>
+                <td>All of the above</td>
+                <td>May 7</td>
+              </tr>
+              <tr>
+                <td class="nm">Alison</td>
+                <td>Brand/Cultural Strategy</td>
+                <td>Director</td>
+                <td>Agency (Horizon Media)</td>
+                <td>Can't find the perfect example</td>
+                <td>May 7</td>
+              </tr>
+              <tr>
+                <td class="nm">Maxine</td>
+                <td>Brand/Cultural Strategy</td>
+                <td>VP / Head of</td>
+                <td>Agency</td>
+                <td>All of the above</td>
+                <td>May 7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section class="block" id="questions">
-    <div class="kicker">04 · What we're figuring out</div>
+    <div class="kicker">05 · What we're figuring out</div>
     <h2>Open questions.</h2>
     <p class="intro">Things we're still working through — flagged here so the whole group sees what's confirmed vs. pending. If you spot a gap or have an idea, bring it to the next meetup or drop it in the community Slack.</p>
 
